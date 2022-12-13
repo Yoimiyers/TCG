@@ -242,7 +242,7 @@
         },
         "effects": [
             {
-                "type": "diceadd",
+                "type": "adddice",
                 "dice": [
                     {
                         "element": "omni",
@@ -262,7 +262,7 @@
             {
                 "type": "destroy",
                 "target": "summon",
-                "amount": 4
+                "amount": 0
             }
         ]
     },
@@ -299,7 +299,7 @@
         "cost": {},
         "effects": [
             {
-                "type": "swap_equipment",
+                "type": "swap",
                 "slot": "artifact"
             }
         ]
@@ -310,7 +310,7 @@
         "cost": {},
         "effects": [
             {
-                "type": "swap_equipment",
+                "type": "swap",
                 "slot": "weapon"
             }
         ]
@@ -321,9 +321,16 @@
         "cost": {
             "amount": 1
         },
+        "target": 1,
         "effects": [
             {
-                "type": "swap_energy"
+                "type": "energy",
+                "amount": 1
+            },
+            {
+                "type": "energy",
+                "amount": -1,
+                "target": "character"
             }
         ]
     },

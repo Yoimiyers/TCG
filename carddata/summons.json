@@ -11,14 +11,13 @@
             {
                 "trigger": "end",
                 "type": "attack",
-                "element": "$infusion",
-                "amount": 2
+                "element": "infused",
+                "damage": 2
             },
             {
                 "trigger": "swirl",
-                "attacker": "self",
                 "type": "infuse",
-                "element": "$react_element"
+                "element": "infused"
             }
         ]
     }

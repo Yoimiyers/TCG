@@ -5,7 +5,7 @@
         "element": "Pyro",
         "weapon": "Claymore",
         "location": "Mondstadt",
-        "moves": [
+        "talents": [
             {
                 "type": "normal",
                 "cost": [
@@ -18,10 +18,10 @@
                         "amount": 2
                     }
                 ],
-                "effect": [
+                "effects": [
                     {
                         "type": "attack",
-                        "amount": 2,
+                        "damage": 2,
                         "element": "physical"
                     }
                 ]
@@ -34,10 +34,10 @@
                         "amount": 3
                     }
                 ],
-                "effect": [
+                "effects": [
                     {
                         "type": "attack",
-                        "amount": 3,
+                        "damage": 3,
                         "element": "Pyro"
                     },
                     {
@@ -54,14 +54,14 @@
                         "amount": 4
                     }
                 ],
-                "effect": [
+                "effects": [
                     {
                         "type": "attack",
-                        "amount": 8,
+                        "damage": 8,
                         "element": "Pyro"
                     },
                     {
-                        "type": "infusion",
+                        "type": "infuse",
                         "element": "Pyro",
                         "duration": 2
                     }
@@ -75,7 +75,7 @@
         "element": "Cryo",
         "weapon": "Sword",
         "location": "Mondstadt",
-        "moves": [
+        "talents": [
             {
                 "type": "normal",
                 "cost": [
@@ -88,10 +88,10 @@
                         "amount": 2
                     }
                 ],
-                "effect": [
+                "effects": [
                     {
                         "type": "attack",
-                        "amount": 2,
+                        "damage": 2,
                         "element": "physical"
                     }
                 ]
@@ -104,10 +104,10 @@
                         "amount": 3
                     }
                 ],
-                "effect": [
+                "effects": [
                     {
                         "type": "attack",
-                        "amount": 3,
+                        "damage": 3,
                         "element": "Cryo"
                     }
                 ]
@@ -120,10 +120,10 @@
                         "amount": 4
                     }
                 ],
-                "effect": [
+                "effects": [
                     {
                         "type": "attack",
-                        "amount": 1,
+                        "damage": 1,
                         "element": "Cryo"
                     },
                     {
@@ -140,7 +140,7 @@
         "element": "Anemo",
         "weapon": "Catalyst",
         "location": "Mondstadt",
-        "moves": [
+        "talents": [
             {
                 "type": "normal",
                 "cost": [
@@ -153,10 +153,10 @@
                         "amount": 2
                     }
                 ],
-                "effect": [
+                "effects": [
                     {
                         "type": "attack",
-                        "amount": 1,
+                        "damage": 1,
                         "element": "Anemo"
                     }
                 ]
@@ -169,10 +169,10 @@
                         "amount": 3
                     }
                 ],
-                "effect": [
+                "effects": [
                     {
                         "type": "attack",
-                        "amount": 3,
+                        "damage": 3,
                         "element": "Anemo"
                     },
                     {
@@ -188,10 +188,10 @@
                         "amount": 3
                     }
                 ],
-                "effect": [
+                "effects": [
                     {
                         "type": "attack",
-                        "amount": 1,
+                        "damage": 1,
                         "element": "Anemo"
                     },
                     {

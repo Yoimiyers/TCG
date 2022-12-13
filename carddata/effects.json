@@ -32,7 +32,7 @@
                 "trigger": "switch",
                 "type": "attack",
                 "element": "Cryo",
-                "amount": 2
+                "damage": 2
             }
         ]
     },
@@ -47,9 +47,11 @@
             {
                 "trigger": "switch",
                 "type": "discount",
-                "dice": {
-                    "amount": 1
-                }
+                "dice": [
+                    {
+                        "amount": 1
+                    }
+                ]
             }
         ]
     },
@@ -63,8 +65,7 @@
             },
             {
                 "trigger": "skill",
-                "type": "switch",
-                "forced": true
+                "type": "switch"
             }
         ]
     },
@@ -78,7 +79,8 @@
             },
             {
                 "trigger": "switch",
-                "type": "instant"
+                "type": "switch",
+                "instant": true
             }
         ]
     }
