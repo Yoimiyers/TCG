@@ -1,0 +1,379 @@
+[
+    {
+        "name": "Laurel Coronet",
+        "type": "equipment",
+        "cost": {
+            "amount": 2
+        },
+        "slot": "artifact",
+        "effects": [
+            {
+                "trigger": "attack",
+                "type": "discount",
+                "dice": [
+                    {
+                        "element": "Dendro",
+                        "amount": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Mask of Solitude Basalt",
+        "type": "equipment",
+        "cost": {
+            "amount": 2
+        },
+        "slot": "artifact",
+        "effects": [
+            {
+                "trigger": "attack",
+                "type": "discount",
+                "dice": [
+                    {
+                        "element": "Geo",
+                        "amount": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Viridescent Venerer's Diadem",
+        "type": "equipment",
+        "cost": {
+            "amount": 2
+        },
+        "slot": "artifact",
+        "effects": [
+            {
+                "trigger": "attack",
+                "type": "discount",
+                "dice": [
+                    {
+                        "element": "Anemo",
+                        "amount": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thunder Summoner's Crown",
+        "type": "equipment",
+        "cost": {
+            "amount": 2
+        },
+        "slot": "artifact",
+        "effects": [
+            {
+                "trigger": "attack",
+                "type": "discount",
+                "dice": [
+                    {
+                        "element": "Electro",
+                        "amount": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Witch's Scorching Hat",
+        "type": "equipment",
+        "cost": {
+            "amount": 2
+        },
+        "slot": "artifact",
+        "effects": [
+            {
+                "trigger": "attack",
+                "type": "discount",
+                "dice": [
+                    {
+                        "element": "Pyro",
+                        "amount": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Wine-Stained Tricorne",
+        "type": "equipment",
+        "cost": {
+            "amount": 2
+        },
+        "slot": "artifact",
+        "effects": [
+            {
+                "trigger": "attack",
+                "type": "discount",
+                "dice": [
+                    {
+                        "element": "Hydro",
+                        "amount": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Broken Rime's Echo",
+        "type": "equipment",
+        "cost": {
+            "amount": 2
+        },
+        "slot": "artifact",
+        "effects": [
+            {
+                "trigger": "attack",
+                "type": "discount",
+                "dice": [
+                    {
+                        "element": "Cryo",
+                        "amount": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Magic Guide",
+        "type": "equipment",
+        "cost": {
+            "amount": 2
+        },
+        "slot": "weapon",
+        "equipment": "Catalyst",
+        "effects": [
+            {
+                "trigger": "attack",
+                "type": "buff",
+                "amount": 1
+            }
+        ]
+    },
+    {
+        "name": "Traveler's Handy Sword",
+        "type": "equipment",
+        "cost": {
+            "amount": 2
+        },
+        "slot": "weapon",
+        "equipment": "Sword",
+        "effects": [
+            {
+                "trigger": "attack",
+                "type": "buff",
+                "amount": 1
+            }
+        ]
+    },
+    {
+        "name": "White Tassel",
+        "type": "equipment",
+        "cost": {
+            "amount": 2
+        },
+        "slot": "weapon",
+        "equipment": "Polearm",
+        "effects": [
+            {
+                "trigger": "attack",
+                "type": "buff",
+                "amount": 1
+            }
+        ]
+    },
+    {
+        "name": "White Iron Greatsword",
+        "type": "equipment",
+        "cost": {
+            "amount": 2
+        },
+        "slot": "weapon",
+        "equipment": "Claymore",
+        "effects": [
+            {
+                "trigger": "attack",
+                "type": "buff",
+                "amount": 1
+            }
+        ]
+    },
+    {
+        "name": "Raven Bow",
+        "type": "equipment",
+        "cost": {
+            "amount": 2
+        },
+        "slot": "weapon",
+        "equipment": "Bow",
+        "effects": [
+            {
+                "trigger": "attack",
+                "type": "buff",
+                "amount": 1
+            }
+        ]
+    },
+    {
+        "name": "Strategize",
+        "type": "event",
+        "cost": {
+            "element": "omni",
+            "amount": 2
+        },
+        "effects": [
+            {
+                "type": "draw",
+                "amount": 2
+            }
+        ]
+    },
+    {
+        "name": "The Bestest Travel Companion!",
+        "type": "event",
+        "cost": {
+            "element": "omni",
+            "amount": 2
+        },
+        "effects": [
+            {
+                "type": "diceadd",
+                "dice": [
+                    {
+                        "element": "omni",
+                        "amount": 2
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Guardian's Oath",
+        "type": "event",
+        "cost": {
+            "amount": 4
+        },
+        "effects": [
+            {
+                "type": "destroy",
+                "target": "summon",
+                "amount": 4
+            }
+        ]
+    },
+    {
+        "name": "Send Off",
+        "type": "event",
+        "cost": {
+            "element": "omni",
+            "amount": 2
+        },
+        "effects": [
+            {
+                "type": "destroy",
+                "target": "enemy_summon"
+            }
+        ]
+    },
+    {
+        "name": "Quick Knit",
+        "type": "event",
+        "cost": {
+            "amount": 1
+        },
+        "effects": [
+            {
+                "type": "extend",
+                "target": "friend_summon"
+            }
+        ]
+    },
+    {
+        "name": "Blessing of the Divine Relic's Installation",
+        "type": "event",
+        "cost": {},
+        "effects": [
+            {
+                "type": "swap_equipment",
+                "slot": "artifact"
+            }
+        ]
+    },
+    {
+        "name": "Master of Weaponry",
+        "type": "event",
+        "cost": {},
+        "effects": [
+            {
+                "type": "swap_equipment",
+                "slot": "weapon"
+            }
+        ]
+    },
+    {
+        "name": "Calx's Arts",
+        "type": "event",
+        "cost": {
+            "amount": 1
+        },
+        "effects": [
+            {
+                "type": "swap_energy"
+            }
+        ]
+    },
+    {
+        "name": "Starsigns",
+        "type": "event",
+        "cost": {
+            "element": "omni",
+            "amount": 2
+        },
+        "effects": [
+            {
+                "type": "energy",
+                "amount": 1
+            }
+        ]
+    },
+    {
+        "name": "Changing Shifts",
+        "type": "event",
+        "cost": {},
+        "effects": [
+            {
+                "type": "effect",
+                "id": "SWITCH_CHANGING_SHIFTS"
+            }
+        ]
+    },
+    {
+        "name": "When the Crane Returned",
+        "type": "event",
+        "cost": {
+            "amount": 1
+        },
+        "effects": [
+            {
+                "type": "effect",
+                "id": "SWITCH_WHEN_THE_CRANE_RETURNED"
+            }
+        ]
+    },
+    {
+        "name": "Leave it to Me!",
+        "type": "event",
+        "cost": {},
+        "effects": [
+            {
+                "type": "effect",
+                "id": "SWITCH_LEAVE_IT_TO_ME"
+            }
+        ]
+    }
+]

@@ -1,0 +1,85 @@
+[
+    {
+        "id": "DILUC_SEARING_ONSLAUGHT",
+        "usage": 3,
+        "invisible": true,
+        "attach": "static",
+        "effects": [
+            {
+                "trigger": "skill",
+                "type": "decrement"
+            },
+            {
+                "trigger": "depleted",
+                "type": "buff",
+                "amount": 2
+            },
+            {
+                "trigger": "end",
+                "type": "clear"
+            }
+        ]
+    },
+    {
+        "id": "KAEYA_ICYCLE",
+        "usage": 3,
+        "effects": [
+            {
+                "trigger": "switch",
+                "type": "decrement"
+            },
+            {
+                "trigger": "switch",
+                "type": "attack",
+                "element": "Cryo",
+                "amount": 2
+            }
+        ]
+    },
+    {
+        "id": "SWITCH_CHANGING_SHIFTS",
+        "usage": 1,
+        "effects": [
+            {
+                "trigger": "switch",
+                "type": "decrement"
+            },
+            {
+                "trigger": "switch",
+                "type": "discount",
+                "dice": {
+                    "amount": 1
+                }
+            }
+        ]
+    },
+    {
+        "id": "SWITCH_WHEN_THE_CRANE_RETURNED",
+        "usage": 1,
+        "effects": [
+            {
+                "trigger": "skill",
+                "type": "decrement"
+            },
+            {
+                "trigger": "skill",
+                "type": "switch",
+                "forced": true
+            }
+        ]
+    },
+    {
+        "id": "SWITCH_LEAVE_IT_TO_ME",
+        "usage": 1,
+        "effects": [
+            {
+                "trigger": "switch",
+                "type": "decrement"
+            },
+            {
+                "trigger": "switch",
+                "type": "instant"
+            }
+        ]
+    }
+]

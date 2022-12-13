@@ -1,0 +1,205 @@
+[
+    {
+        "name": "Diluc",
+        "energy": 3,
+        "element": "Pyro",
+        "weapon": "Claymore",
+        "location": "Mondstadt",
+        "moves": [
+            {
+                "type": "normal",
+                "cost": [
+                    {
+                        "element": "Pyro",
+                        "amount": 1
+                    },
+                    {
+                        "element": null,
+                        "amount": 2
+                    }
+                ],
+                "effect": [
+                    {
+                        "type": "attack",
+                        "amount": 2,
+                        "element": "physical"
+                    }
+                ]
+            },
+            {
+                "type": "skill",
+                "cost": [
+                    {
+                        "element": "Pyro",
+                        "amount": 3
+                    }
+                ],
+                "effect": [
+                    {
+                        "type": "attack",
+                        "amount": 3,
+                        "element": "Pyro"
+                    },
+                    {
+                        "type": "effect",
+                        "id": "DILUC_SEARING_ONSLAUGHT"
+                    }
+                ]
+            },
+            {
+                "type": "burst",
+                "cost": [
+                    {
+                        "element": "Pyro",
+                        "amount": 4
+                    }
+                ],
+                "effect": [
+                    {
+                        "type": "attack",
+                        "amount": 8,
+                        "element": "Pyro"
+                    },
+                    {
+                        "type": "infusion",
+                        "element": "Pyro",
+                        "duration": 2
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Kaeya",
+        "energy": 2,
+        "element": "Cryo",
+        "weapon": "Sword",
+        "location": "Mondstadt",
+        "moves": [
+            {
+                "type": "normal",
+                "cost": [
+                    {
+                        "element": "Cryo",
+                        "amount": 1
+                    },
+                    {
+                        "element": null,
+                        "amount": 2
+                    }
+                ],
+                "effect": [
+                    {
+                        "type": "attack",
+                        "amount": 2,
+                        "element": "physical"
+                    }
+                ]
+            },
+            {
+                "type": "skill",
+                "cost": [
+                    {
+                        "element": "Cryo",
+                        "amount": 3
+                    }
+                ],
+                "effect": [
+                    {
+                        "type": "attack",
+                        "amount": 3,
+                        "element": "Cryo"
+                    }
+                ]
+            },
+            {
+                "type": "burst",
+                "cost": [
+                    {
+                        "element": "Cryo",
+                        "amount": 4
+                    }
+                ],
+                "effect": [
+                    {
+                        "type": "attack",
+                        "amount": 1,
+                        "element": "Cryo"
+                    },
+                    {
+                        "type": "effect",
+                        "id": "KAEYA_ICICLE"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Sucrose",
+        "energy": 2,
+        "element": "Anemo",
+        "weapon": "Catalyst",
+        "location": "Mondstadt",
+        "moves": [
+            {
+                "type": "normal",
+                "cost": [
+                    {
+                        "element": "Anemo",
+                        "amount": 1
+                    },
+                    {
+                        "element": null,
+                        "amount": 2
+                    }
+                ],
+                "effect": [
+                    {
+                        "type": "attack",
+                        "amount": 1,
+                        "element": "Anemo"
+                    }
+                ]
+            },
+            {
+                "type": "skill",
+                "cost": [
+                    {
+                        "element": "Anemo",
+                        "amount": 3
+                    }
+                ],
+                "effect": [
+                    {
+                        "type": "attack",
+                        "amount": 3,
+                        "element": "Anemo"
+                    },
+                    {
+                        "type": "forceswitch"
+                    }
+                ]
+            },
+            {
+                "type": "burst",
+                "cost": [
+                    {
+                        "element": "Anemo",
+                        "amount": 3
+                    }
+                ],
+                "effect": [
+                    {
+                        "type": "attack",
+                        "amount": 1,
+                        "element": "Anemo"
+                    },
+                    {
+                        "type": "summon",
+                        "id": "SUCROSE_WIND_SPIRIT"
+                    }
+                ]
+            }
+        ]
+    }
+]
