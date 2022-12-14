@@ -35,10 +35,7 @@ class Dice:
         self.dice.sort(
             key=lambda x: (
                 x.value != models.Element.OMNI,
-                -(
-                    x.value in self.preferred_elements
-                    and self.preferred_elements.index(x.value)
-                ),
+                -(x.value in self.preferred_elements and self.preferred_elements.index(x.value)),
                 x.value,
             )
         )

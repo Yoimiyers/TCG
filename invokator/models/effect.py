@@ -4,8 +4,16 @@ import typing
 import pydantic
 from typing_extensions import Self
 
-from .enums import (EffectTrigger, EffectType, Element, EquipmentType,
-                    ReactionType, SidelineLocation, SidelineTarget, TalentType)
+from .enums import (
+    EffectTrigger,
+    EffectType,
+    Element,
+    EquipmentType,
+    ReactionType,
+    SidelineLocation,
+    SidelineTarget,
+    TalentType,
+)
 
 
 class DiceCost(pydantic.BaseModel):

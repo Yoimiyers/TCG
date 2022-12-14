@@ -1,0 +1,16 @@
+[tool.black]
+line-length = 120
+target-version = ["py39"]
+
+[tool.isort]
+profile = "black"
+
+[tool.pyright]
+include = ["invokator"]
+exclude = ["**/__init__.py", "tests/**"]
+
+typeCheckingMode = "strict"
+reportMissingTypeStubs = "none"
+reportImportCycles = "none"
+reportUnusedFunction = "none"
+reportPrivateUsage = "none"
