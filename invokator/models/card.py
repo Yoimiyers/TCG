@@ -35,6 +35,12 @@ class EventCard(Card):
 
     effects: list[Effect]
 
+class FoodCard(Card):
+    """TCG food card data."""
+
+    type: CardType = CardType.FOOD
+
+    effects: list[Effect]
 
 _CARD_CLASSES: dict[CardType, type[Card]] = {
     cls.__fields__["type"].default: cls

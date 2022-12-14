@@ -4,8 +4,8 @@ import typing
 import pydantic
 from typing_extensions import Self
 
-from .enums import (EffectTrigger, EffectType, Element, EquipmentType,
-                    SidelineTarget)
+from .enums import (CardPosition, EffectTrigger, EffectType, Element, EquipmentType,
+                    SidelineTarget, TalentType)
 
 
 class DiceCost(pydantic.BaseModel):
@@ -13,10 +13,11 @@ class DiceCost(pydantic.BaseModel):
 
     amount: int = 0
     element: Element | None = None
+    same_element: bool = False # require all dice to be the same element
 
 
 class Effect(pydantic.BaseModel):
-    """TCG attack effect."""
+    """TCG card effect."""
 
     def __new__(cls, **kwargs: typing.Any) -> Self:
         return super().__new__(_EFFECT_CLASSES[EffectType(kwargs["type"])])
@@ -25,12 +26,12 @@ class Effect(pydantic.BaseModel):
     type: EffectType
 
 
-class AttackEffect(Effect):
-    """TCG attack effect."""
+class DamageEffect(Effect):
+    """TCG damage effect."""
 
-    type: EffectType = EffectType.ATTACK
+    type: EffectType = EffectType.DAMAGE
 
-    damage: int
+    amount: int
     element: Element
 
 
@@ -47,19 +48,19 @@ class SummonEffect(Effect):
 
     type: EffectType = EffectType.SUMMON
 
-    id: str
+    id: str # the card id to summon
 
 
-class EffectEffect(Effect):
-    """TCG effect effect."""
+class CustomEffect(Effect):
+    """TCG custom effect."""
 
-    type: EffectType = EffectType.EFFECT
+    type: EffectType = EffectType.CUSTOM
 
     id: str
 
 
 class InfuseEffect(Effect):
-    """TCG infuse effect."""
+    """TCG element infusion effect."""
 
     type: EffectType = EffectType.INFUSE
 
@@ -78,13 +79,16 @@ class ForceSwitchEffect(Effect):
     """TCG force switch effect."""
 
     type: EffectType = EffectType.FORCESWITCH
+    
+    position: CardPosition
 
 
 class BuffEffect(Effect):
-    """TCG buff effect."""
+    """TCG damage buff effect."""
 
     type: EffectType = EffectType.BUFF
 
+    talent: TalentType
     amount: int
 
 
@@ -95,7 +99,7 @@ class ClearEffect(Effect):
 
 
 class DiscountEffect(Effect):
-    """TCG discount effect."""
+    """TCG dice discount effect."""
 
     type: EffectType = EffectType.DISCOUNT
 
@@ -111,7 +115,7 @@ class DecrementEffect(Effect):
 
 
 class DrawEffect(Effect):
-    """TCG draw effect."""
+    """TCG draw card effect."""
 
     type: EffectType = EffectType.DRAW
 
@@ -143,7 +147,7 @@ class ExtendEffect(Effect):
 
 
 class SwapEffect(Effect):
-    """TCG swap effect."""
+    """TCG swap equipment effect."""
 
     type: EffectType = EffectType.SWAP
 
@@ -151,13 +155,30 @@ class SwapEffect(Effect):
 
 
 class EnergyEffect(Effect):
-    """TCG energy effect."""
+    """TCG character gain energy effect."""
 
     type: EffectType = EffectType.ENERGY
 
     amount: int
     target: SidelineTarget = SidelineTarget.ACTIVE_CHARACTER
+    
+class DiceReduceEffect(Effect):
+    """TCG dice reduce effect."""
+    
+    type: EffectType = EffectType.DICEREDUCE
+    
+    amount: int
+    talent: TalentType
+    element: typing.Optional[Element] = None
 
+class ProtectEffect(Effect):
+    """TCG protect effect."""
+
+    type: EffectType = EffectType.PROTECT
+
+    amount: int # amount of damage to protect against
+    element: typing.Optional[Element] = None
+    trigger: EffectTrigger
 
 _EFFECT_CLASSES: dict[EffectType, type[Effect]] = {
     cls.__fields__["type"].default: cls

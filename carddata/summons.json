@@ -10,7 +10,7 @@
             },
             {
                 "trigger": "end",
-                "type": "attack",
+                "type": "damage",
                 "element": "infused",
                 "damage": 2
             },

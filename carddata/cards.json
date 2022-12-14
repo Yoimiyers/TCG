@@ -8,7 +8,7 @@
         "slot": "artifact",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": "damage",
                 "type": "discount",
                 "dice": [
                     {
@@ -28,7 +28,7 @@
         "slot": "artifact",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": "damage",
                 "type": "discount",
                 "dice": [
                     {
@@ -48,7 +48,7 @@
         "slot": "artifact",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": "damage",
                 "type": "discount",
                 "dice": [
                     {
@@ -68,7 +68,7 @@
         "slot": "artifact",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": "damage",
                 "type": "discount",
                 "dice": [
                     {
@@ -88,7 +88,7 @@
         "slot": "artifact",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": "damage",
                 "type": "discount",
                 "dice": [
                     {
@@ -108,7 +108,7 @@
         "slot": "artifact",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": "damage",
                 "type": "discount",
                 "dice": [
                     {
@@ -128,7 +128,7 @@
         "slot": "artifact",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": "damage",
                 "type": "discount",
                 "dice": [
                     {
@@ -149,7 +149,7 @@
         "equipment": "Catalyst",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": "damage",
                 "type": "buff",
                 "amount": 1
             }
@@ -165,7 +165,7 @@
         "equipment": "Sword",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": "damage",
                 "type": "buff",
                 "amount": 1
             }
@@ -181,7 +181,7 @@
         "equipment": "Polearm",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": "damage",
                 "type": "buff",
                 "amount": 1
             }
@@ -197,7 +197,7 @@
         "equipment": "Claymore",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": "damage",
                 "type": "buff",
                 "amount": 1
             }
@@ -213,7 +213,7 @@
         "equipment": "Bow",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": "damage",
                 "type": "buff",
                 "amount": 1
             }

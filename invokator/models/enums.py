@@ -24,6 +24,7 @@ class CardType(str, enum.Enum):
 
     EQUIPMENT = "equipment"
     EVENT = "event"
+    FOOD = "food"
 
 
 class EquipmentType(str, enum.Enum):
@@ -45,10 +46,11 @@ class TalentType(str, enum.Enum):
 class EffectType(str, enum.Enum):
     """Effect type of a character's talent."""
 
-    ATTACK = "attack"
+    DAMAGE = "damage"
+    DAMAGEABOVE = "damageabove" # if the damage is above a certain threshold
     HEAL = "heal"
     SUMMON = "summon"
-    EFFECT = "effect"
+    CUSTOM = "custom"
     INFUSE = "infuse"
     SWITCH = "switch"
     FORCESWITCH = "forceswitch"
@@ -63,13 +65,15 @@ class EffectType(str, enum.Enum):
     EXTEND = "extend"
     SWAP = "swap"
     ENERGY = "energy"
+    DICEREDUCE = "dicereduce"
+    PROTECT = "protect"
 
 
 class EffectTrigger(str, enum.Enum):
     """Trigger of an effect."""
 
     USED = "used"
-    ATTACK = "attack"
+    DAMAGE = "damage"
     NORMAL = "normal"
     SKILL = "skill"
     BURST = "burst"
@@ -98,3 +102,9 @@ class SidelineTarget(str, enum.Enum):
     ENEMY_SUMMON = "enemy_summon"
     CHARACTER = "character"
     ACTIVE_CHARACTER = "active_character"
+
+class CardPosition(str, enum.Enum):
+    """Position of character cards"""
+
+    PREVIOUS = "previous" # left of the active character
+    NEXT = "next" # right of the active character

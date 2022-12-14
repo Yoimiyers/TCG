@@ -30,7 +30,7 @@
             },
             {
                 "trigger": "switch",
-                "type": "attack",
+                "type": "damage",
                 "element": "Cryo",
                 "damage": 2
             }
