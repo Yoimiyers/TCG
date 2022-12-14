@@ -42,6 +42,14 @@ class Effect(pydantic.BaseModel):
     type: EffectType
 
 
+class CardEffect(Effect):
+    """TCG card effect."""
+
+    type: EffectType = EffectType.CARD
+
+    id: str
+
+
 class AttackEffect(Effect):
     """TCG attack effect."""
 
