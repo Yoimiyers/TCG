@@ -18,6 +18,7 @@ class Character(pydantic.BaseModel):
 
     name: str
     energy: int
+    health: int = 10
     element: Element
     weapon: str
     location: str

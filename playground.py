@@ -11,6 +11,9 @@ def load_card_data(file: str, *, cls: type[T]) -> list[T]:
     return [cls(**i) for i in data]
 
 cards = load_card_data("cards.json", cls=invokator.models.Card)
-characters = load_card_data("characters.json", cls=invokator.models.Character)
+characters = load_card_data("characters.json", cls=invokator.interface.Character)
 effects = load_card_data("effects.json", cls=invokator.models.CardEffect)
 summons = load_card_data("summons.json", cls=invokator.models.Summon)
+
+player = invokator.interface.Player(characters[:3], deck=cards)
+print(player)

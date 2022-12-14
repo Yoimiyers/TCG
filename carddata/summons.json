@@ -4,18 +4,25 @@
         "usage": 3,
         "effects": [
             {
-                "trigger": "deploy",
+                "trigger": {
+                    "type": "deploy"
+                },
                 "type": "infuse",
                 "element": "Anemo"
             },
             {
-                "trigger": "end",
+                "trigger": {
+                    "type": "end"
+                },
                 "type": "attack",
                 "element": "infused",
                 "damage": 2
             },
             {
-                "trigger": "swirl",
+                "trigger": {
+                    "type": "attack",
+                    "reaction": "swirl"
+                },
                 "type": "infuse",
                 "element": "infused"
             }

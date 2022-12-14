@@ -8,7 +8,9 @@
         "slot": "artifact",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": {
+                    "type": "attack"
+                },
                 "type": "discount",
                 "dice": [
                     {
@@ -28,7 +30,9 @@
         "slot": "artifact",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": {
+                    "type": "attack"
+                },
                 "type": "discount",
                 "dice": [
                     {
@@ -48,7 +52,9 @@
         "slot": "artifact",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": {
+                    "type": "attack"
+                },
                 "type": "discount",
                 "dice": [
                     {
@@ -68,7 +74,9 @@
         "slot": "artifact",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": {
+                    "type": "attack"
+                },
                 "type": "discount",
                 "dice": [
                     {
@@ -88,7 +96,9 @@
         "slot": "artifact",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": {
+                    "type": "attack"
+                },
                 "type": "discount",
                 "dice": [
                     {
@@ -108,7 +118,9 @@
         "slot": "artifact",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": {
+                    "type": "attack"
+                },
                 "type": "discount",
                 "dice": [
                     {
@@ -128,7 +140,9 @@
         "slot": "artifact",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": {
+                    "type": "attack"
+                },
                 "type": "discount",
                 "dice": [
                     {
@@ -149,7 +163,9 @@
         "equipment": "Catalyst",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": {
+                    "type": "attack"
+                },
                 "type": "buff",
                 "amount": 1
             }
@@ -165,7 +181,9 @@
         "equipment": "Sword",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": {
+                    "type": "attack"
+                },
                 "type": "buff",
                 "amount": 1
             }
@@ -181,7 +199,9 @@
         "equipment": "Polearm",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": {
+                    "type": "attack"
+                },
                 "type": "buff",
                 "amount": 1
             }
@@ -197,7 +217,9 @@
         "equipment": "Claymore",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": {
+                    "type": "attack"
+                },
                 "type": "buff",
                 "amount": 1
             }
@@ -213,7 +235,9 @@
         "equipment": "Bow",
         "effects": [
             {
-                "trigger": "attack",
+                "trigger": {
+                    "type": "attack"
+                },
                 "type": "buff",
                 "amount": 1
             }
@@ -262,7 +286,8 @@
             {
                 "type": "destroy",
                 "target": "summon",
-                "amount": 0
+                "amount": 0,
+                "location": "any"
             }
         ]
     },
@@ -276,7 +301,8 @@
         "effects": [
             {
                 "type": "destroy",
-                "target": "enemy_summon"
+                "target": "summon",
+                "location": "enemy"
             }
         ]
     },
@@ -289,7 +315,7 @@
         "effects": [
             {
                 "type": "extend",
-                "target": "friend_summon"
+                "target": "summon"
             }
         ]
     },

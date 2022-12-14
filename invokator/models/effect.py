@@ -5,7 +5,7 @@ import pydantic
 from typing_extensions import Self
 
 from .enums import (EffectTrigger, EffectType, Element, EquipmentType,
-                    SidelineTarget)
+                    ReactionType, SidelineLocation, SidelineTarget, TalentType)
 
 
 class DiceCost(pydantic.BaseModel):
@@ -15,13 +15,22 @@ class DiceCost(pydantic.BaseModel):
     element: Element | None = None
 
 
+class Trigger(pydantic.BaseModel):
+    """Effect trigger."""
+
+    type: EffectTrigger | None = None
+    talent: TalentType | None = None
+    reaction: ReactionType | None = None
+
+
 class Effect(pydantic.BaseModel):
     """TCG attack effect."""
 
     def __new__(cls, **kwargs: typing.Any) -> Self:
         return super().__new__(_EFFECT_CLASSES[EffectType(kwargs["type"])])
 
-    trigger: EffectTrigger = EffectTrigger.USED
+    trigger: Trigger = Trigger()
+
     type: EffectType
 
 
@@ -132,6 +141,9 @@ class DestroyEffect(Effect):
     type: EffectType = EffectType.DESTROY
 
     target: SidelineTarget
+    location: SidelineLocation
+
+    amount: int = 1
 
 
 class ExtendEffect(Effect):
@@ -140,6 +152,7 @@ class ExtendEffect(Effect):
     type: EffectType = EffectType.EXTEND
 
     target: SidelineTarget
+    location: SidelineLocation = SidelineLocation.FRIEND
 
 
 class SwapEffect(Effect):
@@ -157,6 +170,7 @@ class EnergyEffect(Effect):
 
     amount: int
     target: SidelineTarget = SidelineTarget.ACTIVE_CHARACTER
+    location: SidelineLocation = SidelineLocation.FRIEND
 
 
 _EFFECT_CLASSES: dict[EffectType, type[Effect]] = {

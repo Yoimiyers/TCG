@@ -6,16 +6,23 @@
         "attach": "static",
         "effects": [
             {
-                "trigger": "skill",
+                "trigger": {
+                    "type": "attack",
+                    "talent": "skill"
+                },
                 "type": "decrement"
             },
             {
-                "trigger": "depleted",
+                "trigger": {
+                    "type": "depleted"
+                },
                 "type": "buff",
                 "amount": 2
             },
             {
-                "trigger": "end",
+                "trigger": {
+                    "type": "end"
+                },
                 "type": "clear"
             }
         ]
@@ -25,11 +32,15 @@
         "usage": 3,
         "effects": [
             {
-                "trigger": "switch",
+                "trigger": {
+                    "type": "switch"
+                },
                 "type": "decrement"
             },
             {
-                "trigger": "switch",
+                "trigger": {
+                    "type": "switch"
+                },
                 "type": "attack",
                 "element": "Cryo",
                 "damage": 2
@@ -41,11 +52,15 @@
         "usage": 1,
         "effects": [
             {
-                "trigger": "switch",
+                "trigger": {
+                    "type": "switch"
+                },
                 "type": "decrement"
             },
             {
-                "trigger": "switch",
+                "trigger": {
+                    "type": "switch"
+                },
                 "type": "discount",
                 "dice": [
                     {
@@ -60,11 +75,17 @@
         "usage": 1,
         "effects": [
             {
-                "trigger": "skill",
+                "trigger": {
+                    "type": "attack",
+                    "talent": "skill"
+                },
                 "type": "decrement"
             },
             {
-                "trigger": "skill",
+                "trigger": {
+                    "type": "attack",
+                    "talent": "skill"
+                },
                 "type": "switch"
             }
         ]
@@ -74,11 +95,15 @@
         "usage": 1,
         "effects": [
             {
-                "trigger": "switch",
+                "trigger": {
+                    "type": "switch"
+                },
                 "type": "decrement"
             },
             {
-                "trigger": "switch",
+                "trigger": {
+                    "type": "switch"
+                },
                 "type": "switch",
                 "instant": true
             }

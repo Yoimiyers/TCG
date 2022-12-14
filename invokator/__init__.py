@@ -1,2 +1,2 @@
 """Invokator TCG."""
-from . import models
+from . import interface, models  # type: ignore # noqa
