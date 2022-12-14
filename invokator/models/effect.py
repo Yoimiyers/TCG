@@ -5,6 +5,7 @@ import pydantic
 from typing_extensions import Self
 
 from .enums import (
+    CardPosition,
     EffectTrigger,
     EffectType,
     Element,
@@ -103,6 +104,8 @@ class ForceSwitchEffect(Effect):
     """TCG force switch effect."""
 
     type: EffectType = EffectType.FORCESWITCH
+    
+    switch_pos: CardPosition
 
 
 class BuffEffect(Effect):

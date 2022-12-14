@@ -190,3 +190,9 @@ class SidelineLocation(str, enum.Enum):
     ANY = "any"
     FRIEND = "friend"
     ENEMY = "enemy"
+
+class CardPosition(str, enum.Enum):
+    """Position of a card."""
+
+    LEFT = "left"
+    RIGHT = "right"
