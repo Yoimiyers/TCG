@@ -21,8 +21,8 @@ class Element(str, enum.Enum):
     """Pyro."""
 
     OMNI = "omni"
-    """Omnidice. 
-    
+    """Omnidie. 
+
     Used for cards that can be used with any dice.
     """
 
@@ -109,14 +109,12 @@ class EffectType(str, enum.Enum):
     """Heal a friendly character."""
     SUMMON = "summon"
     """Summon a summon."""
-    EFFECT = "effect"
+    STATUS = "status"
     """Apply an effect to a character."""
     INFUSE = "infuse"
     """Infuse the character with an element."""
     SWITCH = "switch"
     """Switch the current active character."""
-    FORCESWITCH = "forceswitch"
-    """Switch the opponent's active character."""
 
     BUFF = "buff"
     """Buff a character's attack."""
@@ -138,6 +136,8 @@ class EffectType(str, enum.Enum):
     """Swap the equipment of two characters"""
     ENERGY = "energy"
     """Add or remove energy from a character."""
+    QUICK = "quick"
+    """Make an effect a quick action."""
 
 
 class EffectTrigger(str, enum.Enum):
@@ -162,13 +162,13 @@ class EffectTrigger(str, enum.Enum):
     """Trigger on effect or summon deploy."""
 
 
-class CardEffectAttachType(str, enum.Enum):
-    """Type of card effect attachment."""
+class CardStatusAttachType(str, enum.Enum):
+    """Type of card status attachment."""
 
     STATIC = "static"
-    """Effect always stays with this character."""
+    """Status always stays with this character."""
     DYNAMIC = "dynamic"
-    """Effect moves with the active character."""
+    """Status moves with the active character."""
 
 
 class SidelineTarget(str, enum.Enum):
@@ -191,7 +191,8 @@ class SidelineLocation(str, enum.Enum):
     FRIEND = "friend"
     ENEMY = "enemy"
 
-class CardPosition(str, enum.Enum):
+
+class CardDirection(str, enum.Enum):
     """Position of a card."""
 
     LEFT = "left"

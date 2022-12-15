@@ -41,7 +41,7 @@
                         "element": "Pyro"
                     },
                     {
-                        "type": "effect",
+                        "type": "status",
                         "id": "DILUC_SEARING_ONSLAUGHT"
                     }
                 ]
@@ -127,7 +127,7 @@
                         "element": "Cryo"
                     },
                     {
-                        "type": "effect",
+                        "type": "status",
                         "id": "KAEYA_ICICLE"
                     }
                 ]
@@ -176,7 +176,9 @@
                         "element": "Anemo"
                     },
                     {
-                        "type": "forceswitch"
+                        "type": "switch",
+                        "location": "enemy",
+                        "direction": "left"
                     }
                 ]
             },

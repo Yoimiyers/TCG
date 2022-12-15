@@ -7,12 +7,10 @@ from invokator import models
 
 __all__ = ["Character"]
 
-NO_DEFAULT: typing.Any = pydantic.fields.Undefined
-
-pydantic.Field(...)
+NO_DEFAULT: typing.Any = pydantic.Field(default_factory=lambda: pydantic.fields.Undefined)
 
 
-class CharacterEffect(models.CardEffect):
+class CharacterStatus(models.CardStatus):
     """Character effect interface."""
 
     duration: int = NO_DEFAULT
@@ -31,7 +29,7 @@ class Character(models.Character):
     afflicted_element: models.Element | None = None
     infused_element: models.Element | None = None
 
-    effects: list[CharacterEffect] = []
+    status: list[CharacterStatus] = []
     equipment: list[models.EquipmentCard] = []
 
     def __init__(self, **kwargs: typing.Any) -> None:

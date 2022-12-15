@@ -2,12 +2,14 @@
 import pydantic
 
 from .effect import Effect
-from .enums import CardEffectAttachType
+from .enums import CardStatusAttachType
 
 
-class CardEffect(pydantic.BaseModel):
+class CardStatus(pydantic.BaseModel):
+    """Status attached to a card."""
+
     id: str
     usage: int
     invisible: bool = False
-    attach: CardEffectAttachType = CardEffectAttachType.DYNAMIC
+    attach: CardStatusAttachType = CardStatusAttachType.DYNAMIC
     effects: list[Effect]

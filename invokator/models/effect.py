@@ -5,7 +5,7 @@ import pydantic
 from typing_extensions import Self
 
 from .enums import (
-    CardPosition,
+    CardDirection,
     EffectTrigger,
     EffectType,
     Element,
@@ -76,10 +76,10 @@ class SummonEffect(Effect):
     id: str
 
 
-class EffectEffect(Effect):
-    """TCG effect effect."""
+class StatusEffect(Effect):
+    """TCG status effect."""
 
-    type: EffectType = EffectType.EFFECT
+    type: EffectType = EffectType.STATUS
 
     id: str
 
@@ -98,14 +98,8 @@ class SwitchEffect(Effect):
     type: EffectType = EffectType.SWITCH
 
     instant: bool = False
-
-
-class ForceSwitchEffect(Effect):
-    """TCG force switch effect."""
-
-    type: EffectType = EffectType.FORCESWITCH
-    
-    switch_pos: CardPosition
+    location: SidelineLocation
+    direction: CardDirection = CardDirection.RIGHT
 
 
 class BuffEffect(Effect):
@@ -190,6 +184,12 @@ class EnergyEffect(Effect):
     amount: int
     target: SidelineTarget = SidelineTarget.ACTIVE_CHARACTER
     location: SidelineLocation = SidelineLocation.FRIEND
+
+
+class InstantEffect(Effect):
+    """TCG instant effect."""
+
+    type: EffectType = EffectType.QUICK
 
 
 _EFFECT_CLASSES: dict[EffectType, type[Effect]] = {

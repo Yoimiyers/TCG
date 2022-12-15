@@ -380,7 +380,7 @@
         "cost": {},
         "effects": [
             {
-                "type": "effect",
+                "type": "status",
                 "id": "SWITCH_CHANGING_SHIFTS"
             }
         ]
@@ -393,7 +393,7 @@
         },
         "effects": [
             {
-                "type": "effect",
+                "type": "status",
                 "id": "SWITCH_WHEN_THE_CRANE_RETURNED"
             }
         ]
@@ -404,7 +404,7 @@
         "cost": {},
         "effects": [
             {
-                "type": "effect",
+                "type": "status",
                 "id": "SWITCH_LEAVE_IT_TO_ME"
             }
         ]

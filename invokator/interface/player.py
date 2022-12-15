@@ -59,6 +59,6 @@ class Player:
     def clear_expired_effects(self) -> None:
         """Clear all effects that have ran out."""
         for character in self.characters:
-            character.effects = [effect for effect in character.effects if effect.duration > 0]
+            character.status = [effect for effect in character.status if effect.duration > 0]
 
         self.summons = [summon for summon in self.summons if summon.usage_left > 0]
