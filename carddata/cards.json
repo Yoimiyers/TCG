@@ -1,5 +1,6 @@
 [
     {
+        "id": 312701,
         "name": "Laurel Coronet",
         "type": "equipment",
         "cost": {
@@ -22,6 +23,7 @@
         ]
     },
     {
+        "id": 312601,
         "name": "Mask of Solitude Basalt",
         "type": "equipment",
         "cost": {
@@ -44,6 +46,7 @@
         ]
     },
     {
+        "id": 312501,
         "name": "Viridescent Venerer's Diadem",
         "type": "equipment",
         "cost": {
@@ -66,6 +69,7 @@
         ]
     },
     {
+        "id": 312401,
         "name": "Thunder Summoner's Crown",
         "type": "equipment",
         "cost": {
@@ -88,6 +92,7 @@
         ]
     },
     {
+        "id": 312301,
         "name": "Witch's Scorching Hat",
         "type": "equipment",
         "cost": {
@@ -110,6 +115,7 @@
         ]
     },
     {
+        "id": 312201,
         "name": "Wine-Stained Tricorne",
         "type": "equipment",
         "cost": {
@@ -132,6 +138,7 @@
         ]
     },
     {
+        "id": 312101,
         "name": "Broken Rime's Echo",
         "type": "equipment",
         "cost": {
@@ -154,6 +161,7 @@
         ]
     },
     {
+        "id": 311101,
         "name": "Magic Guide",
         "type": "equipment",
         "cost": {
@@ -172,6 +180,7 @@
         ]
     },
     {
+        "id": 311501,
         "name": "Traveler's Handy Sword",
         "type": "equipment",
         "cost": {
@@ -190,6 +199,7 @@
         ]
     },
     {
+        "id": 311401,
         "name": "White Tassel",
         "type": "equipment",
         "cost": {
@@ -208,6 +218,7 @@
         ]
     },
     {
+        "id": 311301,
         "name": "White Iron Greatsword",
         "type": "equipment",
         "cost": {
@@ -226,6 +237,7 @@
         ]
     },
     {
+        "id": 311201,
         "name": "Raven Bow",
         "type": "equipment",
         "cost": {
@@ -244,6 +256,7 @@
         ]
     },
     {
+        "id": 332004,
         "name": "Strategize",
         "type": "event",
         "cost": {
@@ -258,6 +271,7 @@
         ]
     },
     {
+        "id": 332001,
         "name": "The Bestest Travel Companion!",
         "type": "event",
         "cost": {
@@ -277,6 +291,7 @@
         ]
     },
     {
+        "id": 332014,
         "name": "Guardian's Oath",
         "type": "event",
         "cost": {
@@ -292,6 +307,7 @@
         ]
     },
     {
+        "id": 332013,
         "name": "Send Off",
         "type": "event",
         "cost": {
@@ -307,6 +323,7 @@
         ]
     },
     {
+        "id": 332012,
         "name": "Quick Knit",
         "type": "event",
         "cost": {
@@ -320,28 +337,31 @@
         ]
     },
     {
+        "id": 332011,
         "name": "Blessing of the Divine Relic's Installation",
         "type": "event",
         "cost": {},
         "effects": [
             {
-                "type": "swap",
+                "type": "shift",
                 "slot": "artifact"
             }
         ]
     },
     {
+        "id": 332010,
         "name": "Master of Weaponry",
         "type": "event",
         "cost": {},
         "effects": [
             {
-                "type": "swap",
+                "type": "shift",
                 "slot": "weapon"
             }
         ]
     },
     {
+        "id": 332009,
         "name": "Calx's Arts",
         "type": "event",
         "cost": {
@@ -361,6 +381,7 @@
         ]
     },
     {
+        "id": 332008,
         "name": "Starsigns",
         "type": "event",
         "cost": {
@@ -375,6 +396,7 @@
         ]
     },
     {
+        "id": 332002,
         "name": "Changing Shifts",
         "type": "event",
         "cost": {},
@@ -386,6 +408,7 @@
         ]
     },
     {
+        "id": 332007,
         "name": "When the Crane Returned",
         "type": "event",
         "cost": {
@@ -399,6 +422,7 @@
         ]
     },
     {
+        "id": 332006,
         "name": "Leave it to Me!",
         "type": "event",
         "cost": {},

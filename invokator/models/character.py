@@ -8,6 +8,8 @@ from .enums import Element, TalentType
 class Talent(pydantic.BaseModel):
     """TCG character move."""
 
+    id: int
+    name: str
     type: TalentType
     cost: list[DiceCost]
     effects: list[Effect]
@@ -16,6 +18,7 @@ class Talent(pydantic.BaseModel):
 class Character(pydantic.BaseModel):
     """TCG character data."""
 
+    id: int
     name: str
     energy: int
     health: int = 10
@@ -24,3 +27,4 @@ class Character(pydantic.BaseModel):
     location: str
 
     talents: list[Talent]
+    effects: list[Effect] = []

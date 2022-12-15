@@ -1,5 +1,6 @@
 [
     {
+        "id": 1301,
         "name": "Diluc",
         "energy": 3,
         "element": "Pyro",
@@ -7,6 +8,8 @@
         "location": "Mondstadt",
         "talents": [
             {
+                "id": 13011,
+                "name": "Tempered Sword",
                 "type": "normal",
                 "cost": [
                     {
@@ -27,6 +30,8 @@
                 ]
             },
             {
+                "id": 13012,
+                "name": "Searing Onslaught",
                 "type": "skill",
                 "cost": [
                     {
@@ -39,14 +44,12 @@
                         "type": "attack",
                         "damage": 3,
                         "element": "Pyro"
-                    },
-                    {
-                        "type": "status",
-                        "id": "DILUC_SEARING_ONSLAUGHT"
                     }
                 ]
             },
             {
+                "id": 13013,
+                "name": "Dawn",
                 "type": "burst",
                 "cost": [
                     {
@@ -67,9 +70,17 @@
                     }
                 ]
             }
+        ],
+        "effects": [
+            {
+                "trigger": {"type": "start"},
+                "type": "status",
+                "id": "DILUC_SEARING_ONSLAUGHT"
+            }
         ]
     },
     {
+        "id": 1103,
         "name": "Kaeya",
         "energy": 2,
         "element": "Cryo",
@@ -77,6 +88,8 @@
         "location": "Mondstadt",
         "talents": [
             {
+                "id": 11031,
+                "name": "Ceremonial Bladework",
                 "type": "normal",
                 "cost": [
                     {
@@ -97,6 +110,8 @@
                 ]
             },
             {
+                "id": 11032,
+                "name": "Frostgnaw",
                 "type": "skill",
                 "cost": [
                     {
@@ -113,6 +128,8 @@
                 ]
             },
             {
+                "id": 11033,
+                "name": "Glacial Waltz",
                 "type": "burst",
                 "cost": [
                     {
@@ -135,6 +152,7 @@
         ]
     },
     {
+        "id": 1501,
         "name": "Sucrose",
         "energy": 2,
         "element": "Anemo",
@@ -142,6 +160,8 @@
         "location": "Mondstadt",
         "talents": [
             {
+                "id": 15011,
+                "name": "Wind Spirit Creation",
                 "type": "normal",
                 "cost": [
                     {
@@ -162,6 +182,8 @@
                 ]
             },
             {
+                "id": 15012,
+                "name": "Astable Anemohypostasis Creation - 6308",
                 "type": "skill",
                 "cost": [
                     {
@@ -183,6 +205,8 @@
                 ]
             },
             {
+                "id": 15013,
+                "name": "Forbidden Creation - Isomer 75 / Type II",
                 "type": "burst",
                 "cost": [
                     {

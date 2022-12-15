@@ -15,6 +15,8 @@ class Card(pydantic.BaseModel):
         return super().__new__(_CARD_CLASSES[CardType(kwargs["type"])])
 
     type: CardType
+
+    id: int
     name: str
     cost: DiceCost
 

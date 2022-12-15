@@ -168,10 +168,10 @@ class ExtendEffect(Effect):
     location: SidelineLocation = SidelineLocation.FRIEND
 
 
-class SwapEffect(Effect):
-    """TCG swap effect."""
+class ShiftEffect(Effect):
+    """TCG shift effect."""
 
-    type: EffectType = EffectType.SWAP
+    type: EffectType = EffectType.SHIFT
 
     slot: EquipmentType
 
