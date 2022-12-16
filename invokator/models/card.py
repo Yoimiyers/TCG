@@ -12,6 +12,7 @@ class Card(pydantic.BaseModel):
     """TCG card data."""
 
     def __new__(cls, **kwargs: typing.Any) -> Self:
+        """Dynamically create a subclass of Card based on the type field."""
         return super().__new__(_CARD_CLASSES[CardType(kwargs["type"])])
 
     type: CardType

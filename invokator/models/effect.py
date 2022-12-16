@@ -28,6 +28,7 @@ class EffectTrigger(pydantic.BaseModel):
     """Effect trigger."""
 
     def __new__(cls, **kwargs: typing.Any) -> Self:
+        """Dynamically create a subclass of EffectTrigger based on the type field."""
         return super().__new__(_TRIGGER_CLASSES.get(EffectTriggerType(kwargs["type"]), EffectTrigger))
 
     type: EffectTriggerType
@@ -64,6 +65,7 @@ class Effect(pydantic.BaseModel):
     """TCG attack effect."""
 
     def __new__(cls, **kwargs: typing.Any) -> Self:
+        """Dynamically create a subclass of Effect based on the type field."""
         return super().__new__(_EFFECT_CLASSES.get(EffectType(kwargs["type"]), Effect))
 
     trigger: EffectTrigger | None = None
@@ -217,7 +219,7 @@ class EnergyEffect(Effect):
 
 
 class ProtectEffect(Effect):
-    """TCG protect effect"""
+    """TCG protect effect."""
 
     type: EffectType = EffectType.PROTECT
 

@@ -25,9 +25,9 @@ wheels/
 MANIFEST
 
 # test and temporary files
-temp.*
-temp/
-temporary/
+*temp.*
+*temp/
+*temporary/
 
 # Unit test / coverage reports
 htmlcov/

@@ -26,8 +26,8 @@ def decode_card_data(**kwargs: typing.Sequence[pydantic.BaseModel]) -> dict[str,
 
 def dump_card_data(data: typing.Sequence[pydantic.BaseModel], file: str) -> None:
     """Dump card data to a JSON file."""
-    os.makedirs("temporary/carddata", exist_ok=True)
-    file = "temporary/carddata/" + file
+    os.makedirs(".temporary/carddata", exist_ok=True)
+    file = ".temporary/carddata/" + file
     decoded = [json.loads(x.json()) for x in data]
     decoded.sort(key=lambda x: x["id"])
     json.dump(decoded, open(file, "w", encoding="utf-8"), indent=4)
