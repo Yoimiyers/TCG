@@ -69,8 +69,10 @@ class CardType(str, enum.Enum):
     """Support card."""
     FOOD = "food"
     """Food card."""
-    EQUIPMENT = "equipment"
-    """Equipment card."""
+    WEAPON = "weapon"
+    """Weapon card."""
+    ARTIFACT = "artifact"
+    """Artifact card."""
     CHARACTER = "character"
     """Character card."""
 

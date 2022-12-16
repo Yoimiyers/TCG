@@ -5,7 +5,7 @@ import pydantic
 from typing_extensions import Self
 
 from .effect import DiceCost, Effect
-from .enums import CardType, Element, EquipmentType, WeaponType
+from .enums import CardType, Element, WeaponType
 
 
 class Card(pydantic.BaseModel):
@@ -22,14 +22,22 @@ class Card(pydantic.BaseModel):
     cost: DiceCost
 
 
-class EquipmentCard(Card):
-    """TCG equipment card data."""
+class WeaponCard(Card):
+    """TCG weapon card data."""
 
-    type: CardType = CardType.EQUIPMENT
+    type: CardType = CardType.WEAPON
 
-    slot: EquipmentType
+    weapon: WeaponType
+
+    effects: list[Effect]
+
+
+class ArtifactCard(Card):
+    """TCG artifact card data."""
+
+    type: CardType = CardType.ARTIFACT
+
     element: Element | None = None
-    weapon: WeaponType | None = None
 
     effects: list[Effect]
 

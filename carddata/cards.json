@@ -2,11 +2,10 @@
     {
         "id": 312701,
         "name": "Laurel Coronet",
-        "type": "equipment",
+        "type": "artifact",
         "cost": {
             "amount": 2
         },
-        "slot": "artifact",
         "effects": [
             {
                 "trigger": {
@@ -25,11 +24,10 @@
     {
         "id": 312601,
         "name": "Mask of Solitude Basalt",
-        "type": "equipment",
+        "type": "artifact",
         "cost": {
             "amount": 2
         },
-        "slot": "artifact",
         "effects": [
             {
                 "trigger": {
@@ -48,11 +46,10 @@
     {
         "id": 312501,
         "name": "Viridescent Venerer's Diadem",
-        "type": "equipment",
+        "type": "artifact",
         "cost": {
             "amount": 2
         },
-        "slot": "artifact",
         "effects": [
             {
                 "trigger": {
@@ -71,11 +68,10 @@
     {
         "id": 312401,
         "name": "Thunder Summoner's Crown",
-        "type": "equipment",
+        "type": "artifact",
         "cost": {
             "amount": 2
         },
-        "slot": "artifact",
         "effects": [
             {
                 "trigger": {
@@ -94,11 +90,10 @@
     {
         "id": 312301,
         "name": "Witch's Scorching Hat",
-        "type": "equipment",
+        "type": "artifact",
         "cost": {
             "amount": 2
         },
-        "slot": "artifact",
         "effects": [
             {
                 "trigger": {
@@ -117,11 +112,10 @@
     {
         "id": 312201,
         "name": "Wine-Stained Tricorne",
-        "type": "equipment",
+        "type": "artifact",
         "cost": {
             "amount": 2
         },
-        "slot": "artifact",
         "effects": [
             {
                 "trigger": {
@@ -140,11 +134,10 @@
     {
         "id": 312101,
         "name": "Broken Rime's Echo",
-        "type": "equipment",
+        "type": "artifact",
         "cost": {
             "amount": 2
         },
-        "slot": "artifact",
         "effects": [
             {
                 "trigger": {
@@ -163,11 +156,10 @@
     {
         "id": 311101,
         "name": "Magic Guide",
-        "type": "equipment",
+        "type": "weapon",
         "cost": {
             "amount": 2
         },
-        "slot": "weapon",
         "weapon": "Catalyst",
         "effects": [
             {
@@ -182,11 +174,10 @@
     {
         "id": 311501,
         "name": "Traveler's Handy Sword",
-        "type": "equipment",
+        "type": "weapon",
         "cost": {
             "amount": 2
         },
-        "slot": "weapon",
         "weapon": "Sword",
         "effects": [
             {
@@ -201,11 +192,10 @@
     {
         "id": 311401,
         "name": "White Tassel",
-        "type": "equipment",
+        "type": "weapon",
         "cost": {
             "amount": 2
         },
-        "slot": "weapon",
         "weapon": "Polearm",
         "effects": [
             {
@@ -220,11 +210,10 @@
     {
         "id": 311301,
         "name": "White Iron Greatsword",
-        "type": "equipment",
+        "type": "weapon",
         "cost": {
             "amount": 2
         },
-        "slot": "weapon",
         "weapon": "Claymore",
         "effects": [
             {
@@ -239,11 +228,10 @@
     {
         "id": 311201,
         "name": "Raven Bow",
-        "type": "equipment",
+        "type": "weapon",
         "cost": {
             "amount": 2
         },
-        "slot": "weapon",
         "weapon": "Bow",
         "effects": [
             {
