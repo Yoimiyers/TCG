@@ -55,8 +55,8 @@
         "effects": [
             {
                 "trigger": {
-                    "type": "damageabove",
-                    "amount": 2
+                    "type": "damage",
+                    "minimum": 2
                 },
                 "type": "protect",
                 "amount": 1

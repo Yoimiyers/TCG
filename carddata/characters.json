@@ -350,7 +350,6 @@
                     },
                     {
                         "type": "switch",
-                        "instant": true,
                         "location": "enemy"
                     }
                 ]

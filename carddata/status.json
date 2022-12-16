@@ -116,14 +116,14 @@
         "effects": [
             {
                 "trigger": {
-                    "type": "attack",
+                    "type": "damage",
                     "element": "Hydro"
                 },
                 "type": "decrement"
             },
             {
                 "trigger": {
-                    "type": "attack",
+                    "type": "damage",
                     "element": "Hydro"
                 },
                 "type": "buff",

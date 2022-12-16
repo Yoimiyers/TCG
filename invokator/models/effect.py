@@ -6,7 +6,7 @@ from typing_extensions import Self
 
 from .enums import (
     CardDirection,
-    EffectTrigger,
+    EffectTriggerType,
     EffectType,
     Element,
     EquipmentType,
@@ -24,29 +24,49 @@ class DiceCost(pydantic.BaseModel):
     element: Element | None = None
 
 
-class Trigger(pydantic.BaseModel):
+class EffectTrigger(pydantic.BaseModel):
     """Effect trigger."""
 
-    type: EffectTrigger | None = None
+    def __new__(cls, **kwargs: typing.Any) -> Self:
+        return super().__new__(_TRIGGER_CLASSES.get(EffectTriggerType(kwargs["type"]), EffectTrigger))
+
+    type: EffectTriggerType
+
+
+class AttackTrigger(EffectTrigger):
+    """Attack trigger."""
+
+    type: EffectTriggerType = EffectTriggerType.ATTACK
+
     talent: TalentType | None = None
     reaction: ReactionType | None = None
 
 
-class DamageAboveTrigger(Trigger):
+class DamageTrigger(EffectTrigger):
     """Damage above trigger."""
 
-    type: EffectTrigger = EffectTrigger.DAMAGEABOVE
+    type: EffectTriggerType = EffectTriggerType.DAMAGE
 
-    amount: int
+    minimum: int | None = None
+    maximum: int | None = None
+
+    element: Element | None = None
+
+
+_TRIGGER_CLASSES: dict[EffectTriggerType, type[EffectTrigger]] = {
+    cls.__fields__["type"].default: cls
+    for cls in EffectTrigger.__subclasses__()
+    if "type" in cls.__fields__ and cls.__fields__["type"].default
+}
 
 
 class Effect(pydantic.BaseModel):
     """TCG attack effect."""
 
     def __new__(cls, **kwargs: typing.Any) -> Self:
-        return super().__new__(_EFFECT_CLASSES[EffectType(kwargs["type"])])
+        return super().__new__(_EFFECT_CLASSES.get(EffectType(kwargs["type"]), Effect))
 
-    trigger: Trigger = Trigger()
+    trigger: EffectTrigger | None = None
 
     type: EffectType
 
@@ -100,6 +120,7 @@ class InfuseEffect(Effect):
     type: EffectType = EffectType.INFUSE
 
     element: Element
+    duration: int = 1
 
 
 class SwitchEffect(Effect):
@@ -107,7 +128,6 @@ class SwitchEffect(Effect):
 
     type: EffectType = EffectType.SWITCH
 
-    instant: bool = False
     location: SidelineLocation
     direction: CardDirection = CardDirection.RIGHT
 

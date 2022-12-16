@@ -24,6 +24,11 @@ wheels/
 *.egg
 MANIFEST
 
+# test and temporary files
+temp.*
+temp/
+temporary/
+
 # Unit test / coverage reports
 htmlcov/
 .tox/
