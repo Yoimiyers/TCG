@@ -48,5 +48,19 @@
                 "damage": 1
             }
         ]
+    },
+    {
+        "id": "NINGGUANG_JADE_SCREEN",
+        "usage": 2,
+        "effects": [
+            {
+                "trigger": {
+                    "type": "damageabove",
+                    "amount": 2
+                },
+                "type": "protect",
+                "damage": 1
+            }
+        ]
     }
 ]

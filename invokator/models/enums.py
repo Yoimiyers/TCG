@@ -138,6 +138,8 @@ class EffectType(str, enum.Enum):
     """Add or remove energy from a character."""
     QUICK = "quick"
     """Make an effect a quick action."""
+    PROTECT = "protect"
+    """Reduces the damage of an attack."""
 
 
 class EffectTrigger(str, enum.Enum):
@@ -145,6 +147,8 @@ class EffectTrigger(str, enum.Enum):
 
     ATTACK = "attack"
     """Trigger on attack."""
+    DAMAGEABOVE = "damageabove"
+    """Trigger on damage above a threshold."""
 
     DEPLETED = "depleted"
     """Trigger when the effect is depleted."""
@@ -182,7 +186,7 @@ class SidelineTarget(str, enum.Enum):
 
     ACTIVE_CHARACTER = "active_character"
     """Target the active character."""
-    
+
     INACTIVE_CHARACTER = "inactive_character"
     """Target the inactive character."""
 

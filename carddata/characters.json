@@ -372,5 +372,73 @@
                 ]
             }
         ]
+    },
+    {
+        "name": "Ningguang",
+        "energy": 3,
+        "element": "Geo",
+        "weapon": "Catalyst",
+        "location": "Liyue",
+        "talents": [
+            {
+                "name": "Sparkling Scatter",
+                "type": "normal",
+                "cost": [
+                    {
+                        "element": "Geo",
+                        "amount": 1
+                    },
+                    {
+                        "element": null,
+                        "amount": 2
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "damage": 1,
+                        "element": "Geo"
+                    }
+                ]
+            },
+            {
+                "name": "Jade Screen",
+                "type": "skill",
+                "cost": [
+                    {
+                        "element": "Geo",
+                        "amount": 3
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "damage": 2,
+                        "element": "Geo"
+                    },
+                    {
+                        "type": "summon",
+                        "id": "NINGGUANG_JADE_SCREEN"
+                    }
+                ]
+            },
+            {
+                "name": "Starshatter",
+                "type": "burst",
+                "cost": [
+                    {
+                        "element": "Geo",
+                        "amount": 3
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "amount": 6,
+                        "element": "Geo"
+                    }
+                ]
+            }
+        ]
     }
 ]
