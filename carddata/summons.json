@@ -45,7 +45,7 @@
                     "type": "end"
                 },
                 "type": "heal",
-                "damage": 1
+                "amount": 1
             }
         ]
     },
@@ -59,7 +59,7 @@
                     "amount": 2
                 },
                 "type": "protect",
-                "damage": 1
+                "amount": 1
             }
         ]
     }

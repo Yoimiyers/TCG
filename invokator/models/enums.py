@@ -21,7 +21,7 @@ class Element(str, enum.Enum):
     """Pyro."""
 
     OMNI = "omni"
-    """Omnidie. 
+    """Omnidie.
 
     Used for cards that can be used with any dice.
     """
@@ -173,6 +173,8 @@ class CardStatusAttachType(str, enum.Enum):
     """Status always stays with this character."""
     DYNAMIC = "dynamic"
     """Status moves with the active character."""
+    TEMPORARY = "temporary"
+    """Status is removed when the character is switched."""
 
 
 class SidelineTarget(str, enum.Enum):

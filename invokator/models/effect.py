@@ -31,12 +31,14 @@ class Trigger(pydantic.BaseModel):
     talent: TalentType | None = None
     reaction: ReactionType | None = None
 
+
 class DamageAboveTrigger(Trigger):
     """Damage above trigger."""
 
     type: EffectTrigger = EffectTrigger.DAMAGEABOVE
 
     amount: int
+
 
 class Effect(pydantic.BaseModel):
     """TCG attack effect."""
@@ -192,6 +194,7 @@ class EnergyEffect(Effect):
     amount: int
     target: SidelineTarget = SidelineTarget.ACTIVE_CHARACTER
     location: SidelineLocation = SidelineLocation.FRIEND
+
 
 class ProtectEffect(Effect):
     """TCG protect effect"""

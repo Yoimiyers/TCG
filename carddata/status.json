@@ -112,8 +112,7 @@
     {
         "id": "MIRROR_MAIDEN_REFRACTION",
         "usage": 2,
-        "invisible": false,
-        "attach": "static",
+        "attach": "temporary",
         "effects": [
             {
                 "trigger": {
@@ -129,14 +128,6 @@
                 },
                 "type": "buff",
                 "amount": 1
-            },
-            {
-                "trigger": {
-                    "type": "effect",
-                    "id": "MIRROR_MAIDEN_REFRACTION",
-                    "target": "inactive_character"
-                },
-                "type": "clear"
             }
         ]
     }

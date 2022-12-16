@@ -73,7 +73,9 @@
         ],
         "effects": [
             {
-                "trigger": {"type": "start"},
+                "trigger": {
+                    "type": "start"
+                },
                 "type": "status",
                 "id": "DILUC_SEARING_ONSLAUGHT"
             }
@@ -229,6 +231,7 @@
         ]
     },
     {
+        "id": 2202,
         "name": "Mirror Maiden",
         "energy": 2,
         "element": "Hydro",
@@ -236,6 +239,7 @@
         "location": "Fatui",
         "talents": [
             {
+                "id": 22021,
                 "name": "Water Ball",
                 "type": "normal",
                 "cost": [
@@ -257,6 +261,7 @@
                 ]
             },
             {
+                "id": 22022,
                 "name": "Rippled Reflection",
                 "type": "skill",
                 "cost": [
@@ -272,12 +277,13 @@
                         "element": "Hydro"
                     },
                     {
-                        "type": "effect",
+                        "type": "status",
                         "id": "MIRROR_MAIDEN_REFRACTION"
                     }
                 ]
             },
             {
+                "id": 22023,
                 "name": "Rippled Reflection",
                 "type": "burst",
                 "cost": [
@@ -297,6 +303,7 @@
         ]
     },
     {
+        "id": 1502,
         "name": "Jean",
         "energy": 3,
         "element": "Anemo",
@@ -304,6 +311,7 @@
         "location": "Mondstadt",
         "talents": [
             {
+                "id": 15021,
                 "name": "Favonius Bladework",
                 "type": "normal",
                 "cost": [
@@ -325,6 +333,7 @@
                 ]
             },
             {
+                "id": 15022,
                 "name": "Gale Blade",
                 "type": "skill",
                 "cost": [
@@ -347,6 +356,7 @@
                 ]
             },
             {
+                "id": 15023,
                 "name": "Dandelion Breeze",
                 "type": "burst",
                 "cost": [
@@ -363,7 +373,7 @@
                     {
                         "type": "heal",
                         "amount": 2,
-                        "target": "inactive"
+                        "target": "inactive_character"
                     },
                     {
                         "type": "heal",
@@ -374,6 +384,7 @@
         ]
     },
     {
+        "id": 1601,
         "name": "Ningguang",
         "energy": 3,
         "element": "Geo",
@@ -381,6 +392,7 @@
         "location": "Liyue",
         "talents": [
             {
+                "id": 16011,
                 "name": "Sparkling Scatter",
                 "type": "normal",
                 "cost": [
@@ -402,6 +414,7 @@
                 ]
             },
             {
+                "id": 16012,
                 "name": "Jade Screen",
                 "type": "skill",
                 "cost": [
@@ -423,6 +436,7 @@
                 ]
             },
             {
+                "id": 16013,
                 "name": "Starshatter",
                 "type": "burst",
                 "cost": [
@@ -434,7 +448,7 @@
                 "effects": [
                     {
                         "type": "attack",
-                        "amount": 6,
+                        "damage": 6,
                         "element": "Geo"
                     }
                 ]
