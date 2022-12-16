@@ -32,6 +32,14 @@ class Trigger(pydantic.BaseModel):
     reaction: ReactionType | None = None
 
 
+class DamageAboveTrigger(Trigger):
+    """Damage above trigger."""
+
+    type: EffectTrigger = EffectTrigger.DAMAGEABOVE
+
+    amount: int
+
+
 class Effect(pydantic.BaseModel):
     """TCG attack effect."""
 
@@ -66,6 +74,7 @@ class HealEffect(Effect):
     type: EffectType = EffectType.HEAL
 
     amount: int
+    target: SidelineTarget = SidelineTarget.ACTIVE_CHARACTER
 
 
 class SummonEffect(Effect):
@@ -82,6 +91,7 @@ class StatusEffect(Effect):
     type: EffectType = EffectType.STATUS
 
     id: str
+    target: SidelineTarget = SidelineTarget.ACTIVE_CHARACTER
 
 
 class InfuseEffect(Effect):
@@ -184,6 +194,16 @@ class EnergyEffect(Effect):
     amount: int
     target: SidelineTarget = SidelineTarget.ACTIVE_CHARACTER
     location: SidelineLocation = SidelineLocation.FRIEND
+
+
+class ProtectEffect(Effect):
+    """TCG protect effect"""
+
+    type: EffectType = EffectType.PROTECT
+
+    amount: int
+    element: Element | None = None
+    """To only protect against the specified element"""
 
 
 class InstantEffect(Effect):

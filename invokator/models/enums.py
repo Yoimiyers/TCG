@@ -21,7 +21,7 @@ class Element(str, enum.Enum):
     """Pyro."""
 
     OMNI = "omni"
-    """Omnidie. 
+    """Omnidie.
 
     Used for cards that can be used with any dice.
     """
@@ -138,6 +138,8 @@ class EffectType(str, enum.Enum):
     """Add or remove energy from a character."""
     QUICK = "quick"
     """Make an effect a quick action."""
+    PROTECT = "protect"
+    """Reduces the damage of an attack."""
 
 
 class EffectTrigger(str, enum.Enum):
@@ -145,6 +147,8 @@ class EffectTrigger(str, enum.Enum):
 
     ATTACK = "attack"
     """Trigger on attack."""
+    DAMAGEABOVE = "damageabove"
+    """Trigger on damage above a threshold."""
 
     DEPLETED = "depleted"
     """Trigger when the effect is depleted."""
@@ -169,6 +173,8 @@ class CardStatusAttachType(str, enum.Enum):
     """Status always stays with this character."""
     DYNAMIC = "dynamic"
     """Status moves with the active character."""
+    TEMPORARY = "temporary"
+    """Status is removed when the character is switched."""
 
 
 class SidelineTarget(str, enum.Enum):
@@ -182,6 +188,9 @@ class SidelineTarget(str, enum.Enum):
 
     ACTIVE_CHARACTER = "active_character"
     """Target the active character."""
+
+    INACTIVE_CHARACTER = "inactive_character"
+    """Target the inactive character."""
 
 
 class SidelineLocation(str, enum.Enum):

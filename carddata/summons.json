@@ -27,5 +27,40 @@
                 "element": "infused"
             }
         ]
+    },
+    {
+        "id": "JEAN_DANDELION_FIELD",
+        "usage": 2,
+        "effects": [
+            {
+                "trigger": {
+                    "type": "end"
+                },
+                "type": "attack",
+                "element": "infused",
+                "damage": 2
+            },
+            {
+                "trigger": {
+                    "type": "end"
+                },
+                "type": "heal",
+                "amount": 1
+            }
+        ]
+    },
+    {
+        "id": "NINGGUANG_JADE_SCREEN",
+        "usage": 2,
+        "effects": [
+            {
+                "trigger": {
+                    "type": "damageabove",
+                    "amount": 2
+                },
+                "type": "protect",
+                "amount": 1
+            }
+        ]
     }
 ]

@@ -73,7 +73,9 @@
         ],
         "effects": [
             {
-                "trigger": {"type": "start"},
+                "trigger": {
+                    "type": "start"
+                },
                 "type": "status",
                 "id": "DILUC_SEARING_ONSLAUGHT"
             }
@@ -223,6 +225,231 @@
                     {
                         "type": "summon",
                         "id": "SUCROSE_WIND_SPIRIT"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2202,
+        "name": "Mirror Maiden",
+        "energy": 2,
+        "element": "Hydro",
+        "weapon": "Other",
+        "location": "Fatui",
+        "talents": [
+            {
+                "id": 22021,
+                "name": "Water Ball",
+                "type": "normal",
+                "cost": [
+                    {
+                        "element": "Hydro",
+                        "amount": 1
+                    },
+                    {
+                        "element": null,
+                        "amount": 2
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "damage": 1,
+                        "element": "Hydro"
+                    }
+                ]
+            },
+            {
+                "id": 22022,
+                "name": "Rippled Reflection",
+                "type": "skill",
+                "cost": [
+                    {
+                        "element": "Hydro",
+                        "amount": 3
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "damage": 3,
+                        "element": "Hydro"
+                    },
+                    {
+                        "type": "status",
+                        "id": "MIRROR_MAIDEN_REFRACTION"
+                    }
+                ]
+            },
+            {
+                "id": 22023,
+                "name": "Rippled Reflection",
+                "type": "burst",
+                "cost": [
+                    {
+                        "element": "Hydro",
+                        "amount": 3
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "damage": 5,
+                        "element": "Hydro"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 1502,
+        "name": "Jean",
+        "energy": 3,
+        "element": "Anemo",
+        "weapon": "Sword",
+        "location": "Mondstadt",
+        "talents": [
+            {
+                "id": 15021,
+                "name": "Favonius Bladework",
+                "type": "normal",
+                "cost": [
+                    {
+                        "element": "Anemo",
+                        "amount": 1
+                    },
+                    {
+                        "element": null,
+                        "amount": 2
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "damage": 2,
+                        "element": "physical"
+                    }
+                ]
+            },
+            {
+                "id": 15022,
+                "name": "Gale Blade",
+                "type": "skill",
+                "cost": [
+                    {
+                        "element": "Anemo",
+                        "amount": 3
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "damage": 3,
+                        "element": "Anemo"
+                    },
+                    {
+                        "type": "switch",
+                        "instant": true,
+                        "location": "enemy"
+                    }
+                ]
+            },
+            {
+                "id": 15023,
+                "name": "Dandelion Breeze",
+                "type": "burst",
+                "cost": [
+                    {
+                        "element": "Anemo",
+                        "amount": 4
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "summon",
+                        "id": "JEAN_DANDELION_FIELD"
+                    },
+                    {
+                        "type": "heal",
+                        "amount": 2,
+                        "target": "inactive_character"
+                    },
+                    {
+                        "type": "heal",
+                        "amount": 2
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 1601,
+        "name": "Ningguang",
+        "energy": 3,
+        "element": "Geo",
+        "weapon": "Catalyst",
+        "location": "Liyue",
+        "talents": [
+            {
+                "id": 16011,
+                "name": "Sparkling Scatter",
+                "type": "normal",
+                "cost": [
+                    {
+                        "element": "Geo",
+                        "amount": 1
+                    },
+                    {
+                        "element": null,
+                        "amount": 2
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "damage": 1,
+                        "element": "Geo"
+                    }
+                ]
+            },
+            {
+                "id": 16012,
+                "name": "Jade Screen",
+                "type": "skill",
+                "cost": [
+                    {
+                        "element": "Geo",
+                        "amount": 3
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "damage": 2,
+                        "element": "Geo"
+                    },
+                    {
+                        "type": "summon",
+                        "id": "NINGGUANG_JADE_SCREEN"
+                    }
+                ]
+            },
+            {
+                "id": 16013,
+                "name": "Starshatter",
+                "type": "burst",
+                "cost": [
+                    {
+                        "element": "Geo",
+                        "amount": 3
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "damage": 6,
+                        "element": "Geo"
                     }
                 ]
             }
