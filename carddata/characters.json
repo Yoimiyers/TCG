@@ -295,5 +295,82 @@
                 ]
             }
         ]
+    },
+    {
+        "name": "Jean",
+        "energy": 3,
+        "element": "Anemo",
+        "weapon": "Sword",
+        "location": "Mondstadt",
+        "talents": [
+            {
+                "name": "Favonius Bladework",
+                "type": "normal",
+                "cost": [
+                    {
+                        "element": "Anemo",
+                        "amount": 1
+                    },
+                    {
+                        "element": null,
+                        "amount": 2
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "damage": 2,
+                        "element": "physical"
+                    }
+                ]
+            },
+            {
+                "name": "Gale Blade",
+                "type": "skill",
+                "cost": [
+                    {
+                        "element": "Anemo",
+                        "amount": 3
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "damage": 3,
+                        "element": "Anemo"
+                    },
+                    {
+                        "type": "switch",
+                        "instant": true,
+                        "location": "enemy"
+                    }
+                ]
+            },
+            {
+                "name": "Dandelion Breeze",
+                "type": "burst",
+                "cost": [
+                    {
+                        "element": "Anemo",
+                        "amount": 4
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "summon",
+                        "id": "JEAN_DANDELION_FIELD"
+                    },
+                    {
+                        "type": "heal",
+                        "amount": 2,
+                        "target": "inactive"
+                    },
+                    {
+                        "type": "heal",
+                        "amount": 2
+                    }
+                ]
+            }
+        ]
     }
 ]

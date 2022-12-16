@@ -66,6 +66,7 @@ class HealEffect(Effect):
     type: EffectType = EffectType.HEAL
 
     amount: int
+    target: SidelineTarget = SidelineTarget.ACTIVE_CHARACTER
 
 
 class SummonEffect(Effect):

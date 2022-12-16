@@ -27,5 +27,26 @@
                 "element": "infused"
             }
         ]
+    },
+    {
+        "id": "JEAN_DANDELION_FIELD",
+        "usage": 2,
+        "effects": [
+            {
+                "trigger": {
+                    "type": "end"
+                },
+                "type": "attack",
+                "element": "infused",
+                "damage": 2
+            },
+            {
+                "trigger": {
+                    "type": "end"
+                },
+                "type": "heal",
+                "damage": 1
+            }
+        ]
     }
 ]
