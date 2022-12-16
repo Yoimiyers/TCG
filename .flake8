@@ -1,0 +1,17 @@
+[flake8]
+exclude = playground.py, tests, **/__init__.py
+
+# D105: Missing docstring in magic method
+ignore = 
+    D105,
+
+max-complexity = 12
+max-function-length = 100
+max-line-length = 130
+
+max_annotations_complexity = 5
+
+accept-encodings = utf-8
+docstring-convention = numpy
+ignore-decorators = property
+requirements_file = requirements.txt

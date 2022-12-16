@@ -168,7 +168,7 @@
             "amount": 2
         },
         "slot": "weapon",
-        "equipment": "Catalyst",
+        "weapon": "Catalyst",
         "effects": [
             {
                 "trigger": {
@@ -187,7 +187,7 @@
             "amount": 2
         },
         "slot": "weapon",
-        "equipment": "Sword",
+        "weapon": "Sword",
         "effects": [
             {
                 "trigger": {
@@ -206,7 +206,7 @@
             "amount": 2
         },
         "slot": "weapon",
-        "equipment": "Polearm",
+        "weapon": "Polearm",
         "effects": [
             {
                 "trigger": {
@@ -225,7 +225,7 @@
             "amount": 2
         },
         "slot": "weapon",
-        "equipment": "Claymore",
+        "weapon": "Claymore",
         "effects": [
             {
                 "trigger": {
@@ -244,7 +244,7 @@
             "amount": 2
         },
         "slot": "weapon",
-        "equipment": "Bow",
+        "weapon": "Bow",
         "effects": [
             {
                 "trigger": {
@@ -367,7 +367,6 @@
         "cost": {
             "amount": 1
         },
-        "target": 1,
         "effects": [
             {
                 "type": "energy",

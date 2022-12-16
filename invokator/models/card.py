@@ -5,13 +5,14 @@ import pydantic
 from typing_extensions import Self
 
 from .effect import DiceCost, Effect
-from .enums import CardType, EquipmentType
+from .enums import CardType, Element, EquipmentType, WeaponType
 
 
 class Card(pydantic.BaseModel):
     """TCG card data."""
 
     def __new__(cls, **kwargs: typing.Any) -> Self:
+        """Dynamically create a subclass of Card based on the type field."""
         return super().__new__(_CARD_CLASSES[CardType(kwargs["type"])])
 
     type: CardType
@@ -27,6 +28,9 @@ class EquipmentCard(Card):
     type: CardType = CardType.EQUIPMENT
 
     slot: EquipmentType
+    element: Element | None = None
+    weapon: WeaponType | None = None
+
     effects: list[Effect]
 
 

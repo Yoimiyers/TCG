@@ -84,6 +84,23 @@ class EquipmentType(str, enum.Enum):
     """Weapon card."""
 
 
+class WeaponType(str, enum.Enum):
+    """Type of a weapon card."""
+
+    SWORD = "Sword"
+    """Sword."""
+    CLAYMORE = "Claymore"
+    """Claymore."""
+    POLEARM = "Polearm"
+    """Polearm."""
+    BOW = "Bow"
+    """Bow."""
+    CATALYST = "Catalyst"
+    """Catalyst."""
+    OTHER = "Other"
+    """Monster's weapon."""
+
+
 class TalentType(str, enum.Enum):
     """Type of a character's talent."""
 
@@ -142,12 +159,12 @@ class EffectType(str, enum.Enum):
     """Reduces the damage of an attack."""
 
 
-class EffectTrigger(str, enum.Enum):
+class EffectTriggerType(str, enum.Enum):
     """Trigger of an effect."""
 
     ATTACK = "attack"
     """Trigger on attack."""
-    DAMAGEABOVE = "damageabove"
+    DAMAGE = "damage"
     """Trigger on damage above a threshold."""
 
     DEPLETED = "depleted"

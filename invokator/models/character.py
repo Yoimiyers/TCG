@@ -2,7 +2,7 @@
 import pydantic
 
 from .effect import DiceCost, Effect
-from .enums import Element, TalentType
+from .enums import Element, TalentType, WeaponType
 
 
 class Talent(pydantic.BaseModel):
@@ -23,7 +23,7 @@ class Character(pydantic.BaseModel):
     energy: int
     health: int = 10
     element: Element
-    weapon: str
+    weapon: WeaponType
     location: str
 
     talents: list[Talent]
