@@ -23,7 +23,7 @@ class Card(pydantic.BaseModel):
 
 
 class WeaponCard(Card):
-    """TCG equipment card data."""
+    """TCG weapon card data."""
 
     type: CardType = CardType.WEAPON
 
@@ -33,6 +33,7 @@ class WeaponCard(Card):
 
 
 class ArtifactCard(Card):
+    """TCG artifact card data."""
 
     type: CardType = CardType.ARTIFACT
 
