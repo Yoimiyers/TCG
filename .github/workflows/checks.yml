@@ -75,7 +75,7 @@ jobs:
               uses: actions/setup-node@v3
 
             - name: Install prettier
-              run: npm install prettier
+              run: npm install prettier --global
 
             - name: Setup Python 3.10
               uses: actions/setup-python@v3
