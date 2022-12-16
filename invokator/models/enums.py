@@ -182,6 +182,9 @@ class SidelineTarget(str, enum.Enum):
 
     ACTIVE_CHARACTER = "active_character"
     """Target the active character."""
+    
+    INACTIVE_CHARACTER = "inactive_character"
+    """Target the inactive character."""
 
 
 class SidelineLocation(str, enum.Enum):

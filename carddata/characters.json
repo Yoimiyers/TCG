@@ -227,5 +227,70 @@
                 ]
             }
         ]
+    },
+    {
+        "name": "Mirror Maiden",
+        "energy": 2,
+        "element": "Hydro",
+        "weapon": "Other",
+        "location": "Fatui",
+        "talents": [
+            {
+                "type": "normal",
+                "cost": [
+                    {
+                        "element": "Hydro",
+                        "amount": 1
+                    },
+                    {
+                        "element": null,
+                        "amount": 2
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "damage": 1,
+                        "element": "Hydro"
+                    }
+                ]
+            },
+            {
+                "type": "skill",
+                "cost": [
+                    {
+                        "element": "Hydro",
+                        "amount": 3
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "damage": 3,
+                        "element": "Hydro"
+                    },
+                    {
+                        "type": "effect",
+                        "id": "MIRROR_MAIDEN_REFRACTION"
+                    }
+                ]
+            },
+            {
+                "type": "burst",
+                "cost": [
+                    {
+                        "element": "Hydro",
+                        "amount": 3
+                    }
+                ],
+                "effects": [
+                    {
+                        "type": "attack",
+                        "damage": 5,
+                        "element": "Hydro"
+                    }
+                ]
+            }
+        ]
     }
 ]

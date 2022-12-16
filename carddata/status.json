@@ -108,5 +108,36 @@
                 "type": "quick"
             }
         ]
+    },
+    {
+        "id": "MIRROR_MAIDEN_REFRACTION",
+        "usage": 2,
+        "invisible": false,
+        "attach": "static",
+        "effects": [
+            {
+                "trigger": {
+                    "type": "attack",
+                    "element": "Hydro"
+                },
+                "type": "decrement"
+            },
+            {
+                "trigger": {
+                    "type": "attack",
+                    "element": "Hydro"
+                },
+                "type": "buff",
+                "amount": 1
+            },
+            {
+                "trigger": {
+                    "type": "effect",
+                    "id": "MIRROR_MAIDEN_REFRACTION",
+                    "target": "inactive_character"
+                },
+                "type": "clear"
+            }
+        ]
     }
 ]

@@ -82,6 +82,7 @@ class StatusEffect(Effect):
     type: EffectType = EffectType.STATUS
 
     id: str
+    target: SidelineTarget = SidelineTarget.ACTIVE_CHARACTER
 
 
 class InfuseEffect(Effect):
