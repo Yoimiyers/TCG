@@ -7,7 +7,8 @@ CARD_TYPE_ORDER = (
     models.CardType.CHARACTER,
     models.CardType.EVENT,
     models.CardType.SUPPORT,
-    models.CardType.EQUIPMENT,
+    models.CardType.WEAPON,
+    models.CardType.ARTIFACT,
 )
 
 

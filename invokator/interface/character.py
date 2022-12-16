@@ -30,7 +30,8 @@ class Character(models.Character):
     infused_element: models.Element | None = None
 
     status: list[CharacterStatus] = []
-    equipment: list[models.EquipmentCard] = []
+    equipped_weapon: models.WeaponCard | None = None
+    equipped_artifact: models.ArtifactCard | None = None
 
     def __init__(self, **kwargs: typing.Any) -> None:
         super().__init__(**kwargs)
