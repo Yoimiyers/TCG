@@ -108,6 +108,9 @@ class DamageEvent(ChangeHealthEvent):
     damage: int
     """The damage dealt."""
 
+    element: models.Element | None
+    """The element that caused the damage."""
+
     @property
     def delta(self) -> int:
         return -self.damage
@@ -128,6 +131,13 @@ class SummonAttackEvent(DamageEvent):
 
     source: StrID
     """The summon that attacked."""
+
+
+class StatusDamageEvent(DamageEvent):
+    """A status has caused damage."""
+
+    source: StrID
+    """The status that caused the damage."""
 
 
 # ====================
@@ -456,10 +466,13 @@ class DiceRequestEvent(RequestEvent[list[models.Element]]):
     """The cost of the dice."""
 
     recommended: list[models.Element] | None
-    """The recommended dice to choose."""
+    """The recommended dice to choose.
+
+    If this is None, the player cannot afford the cost.
+    """
 
 
-class TalentRequestEvent(RequestEvent[StrID]):
+class TalentRequestEvent(RequestEvent[IntID]):
     """A player has been requested to choose a talent."""
 
     possible: list[IntID]

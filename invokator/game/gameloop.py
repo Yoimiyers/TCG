@@ -5,9 +5,9 @@ import typing
 
 from typing_extensions import Self
 
-from invokator import interface
+from invokator import interface, models
 
-from . import comm, enums
+from . import comm, enums, utility
 from .comm import events
 
 T = typing.TypeVar("T")
@@ -66,6 +66,10 @@ class State:
     async def send_both(self, event: events.Event) -> None:
         """Send an event to both players."""
         await asyncio.gather(self.comms[0](event), self.comms[1](event))
+
+    async def send_error(self, message: str) -> None:
+        """Send an error to both players."""
+        await self.mecomm(events.ErrorEvent(message=message))
 
 
 async def _run_both(callback: typing.Callable[[State], typing.Awaitable[T]], state: State) -> Pair[T]:
@@ -157,7 +161,7 @@ async def choose_active_character(state: State) -> None:
         )
     )
     if character is None:
-        await state.mecomm(events.ErrorEvent(message="No character chosen!"))
+        await state.send_error("No character chosen!")
         character = state.me.characters[0].id
 
     state.me.switch_character(character)
@@ -219,6 +223,31 @@ async def roll_dice(state: State) -> None:
     )
 
 
+@for_both
+async def draw_cards(state: State) -> None:
+    """Draw 2 cards."""
+    cards = state.me.draw_cards(2)
+
+    await state.mecomm(
+        events.CardDrawEvent(
+            side=state.me.id,
+            current_amount=state.me.deck.amount,
+            current=state.me.deck.card_ids,
+            amount=len(cards),
+            cards=to_ids(cards),
+        )
+    )
+    await state.opponentcomm(
+        events.CardDrawEvent(
+            side=state.me.id,
+            current_amount=state.me.deck.amount,
+            current=None,
+            amount=state.me.deck.amount,
+            cards=None,
+        )
+    )
+
+
 async def run_preparation(state: State) -> None:
     """Prepare the game."""
     await choose_cards(state)
@@ -236,28 +265,120 @@ async def run_round_end(state: State) -> None:
     await state.send_both(events.EndRoundEvent(side=state.me.id))
 
 
+async def execute_effect(
+    state: State,
+    effect: models.Effect,
+    *,
+    source: models.Talent | models.CardStatus | models.Summon | None = None,
+) -> None:
+    """Execute an effect."""
+    assert state.opponent.active_character is not None
+    assert state.me.active_character is not None
+
+    match effect:
+        case models.AttackEffect():
+            if effect.element:
+                await state.send_error("Elements not implemented!")
+            if effect.piercing:
+                await state.send_error("Piercing not implemented!")
+            if effect.target != models.SidelineTarget.ACTIVE_CHARACTER:
+                await state.send_error("Target not implemented!")
+
+            state.opponent.active_character.change_health(-effect.damage)
+            match source:
+                case models.Talent():
+                    await state.send_both(
+                        events.TalentEvent(
+                            side=state.me.id,
+                            target=state.opponent.active_character.id,
+                            current=state.opponent.active_character.health,
+                            damage=effect.damage,
+                            element=effect.element,
+                            source=state.me.active_character.id,
+                            talent=source.id,
+                        )
+                    )
+                case _:
+                    await state.send_error(f"Unknown source for attack effect: {source!r}")
+                    await state.send_both(
+                        events.DamageEvent(
+                            side=state.me.id,
+                            target=state.opponent.active_character.id,
+                            current=state.opponent.active_character.health,
+                            damage=effect.damage,
+                            element=effect.element,
+                        )
+                    )
+        case _:
+            await state.send_error(f"Unknown effect: {effect!r}")
+
+
 async def run_attack_action(state: State) -> None:
     """Run an attack action."""
-    talent = await state.mecomm(events.TalentRequestEvent(possible=to_ids(state.opponent.alive_characters)))
-    if talent is None:
+    assert state.me.active_character is not None
+
+    talent_id = await state.mecomm(
+        events.TalentRequestEvent(
+            possible=to_ids(state.me.active_character.talents),
+        )
+    )
+    if talent_id is None:
         return
 
-    await state.mecomm(events.ErrorEvent(message="Not implemented yet!"))
+    talent = state.me.active_character.get_talent(talent_id)
+    if talent is None:
+        await state.send_error("Invalid talent!")
+        return
+
+    dice = await state.mecomm(
+        events.DiceRequestEvent(
+            cost=talent.cost,
+            recommended=utility.recommend_dice(state.me.dice.dice, talent.cost),
+        )
+    )
+
+    if dice is None or not utility.is_enough_dice(dice, talent.cost):
+        await state.send_error("Invalid dice!")
+        return
+
+    state.me.dice.remove(dice)
+
+    await state.mecomm(
+        events.DiceRemoveEvent(
+            side=state.me.id,
+            current_amount=len(state.me.dice.dice),
+            current=state.me.dice.dice,
+            amount=len(dice),
+            dice=dice,
+        )
+    )
+    await state.opponentcomm(
+        events.DiceRemoveEvent(
+            side=state.me.id,
+            current_amount=len(state.me.dice.dice),
+            current=None,
+            amount=len(dice),
+            dice=None,
+        )
+    )
+
+    for effect in talent.effects:
+        await execute_effect(state, effect, source=talent)
 
 
 async def run_card_action(state: State) -> None:
     """Run a card action."""
-    await state.mecomm(events.ErrorEvent(message="Not implemented yet!"))
+    await state.send_error("Not implemented yet!")
 
 
 async def run_tune_action(state: State) -> None:
     """Run a tune action."""
-    await state.mecomm(events.ErrorEvent(message="Not implemented yet!"))
+    await state.send_error("Not implemented yet!")
 
 
 async def run_switch_action(state: State) -> None:
     """Run a switch action."""
-    await state.mecomm(events.ErrorEvent(message="Not implemented yet!"))
+    await state.send_error("Not implemented yet!")
 
 
 async def run_turn(state: State) -> typing.Literal[enums.Action.CONCEDE] | None:
@@ -280,7 +401,7 @@ async def run_turn(state: State) -> typing.Literal[enums.Action.CONCEDE] | None:
             case enums.Action.SWITCH:
                 await run_switch_action(state)
             case _:
-                await state.mecomm(events.ErrorEvent(message="Invalid action!"))
+                await state.send_error("Invalid action!")
                 continue
 
         if has_all_characters_dead(state):
@@ -299,8 +420,13 @@ async def main(state: State) -> None:
     if random.random() < 0.5:
         state = state.reversed()
 
+    round_number = 1
+
     while True:
         await run_round_start(state.reversed())
+
+        if round_number > 1:
+            await draw_cards(state)
 
         while True:
             if state.opponent.declared_end:
@@ -320,6 +446,7 @@ async def main(state: State) -> None:
                 return
 
         await run_round_end(state)
+        round_number += 1
 
 
 async def start(players: Pair[interface.Player], comms: Pair[comm.Callback]) -> None:

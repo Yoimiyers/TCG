@@ -28,3 +28,7 @@ class Character(pydantic.BaseModel):
 
     talents: list[Talent]
     effects: list[Effect] = []
+
+    def get_talent(self, id: int) -> Talent | None:
+        """Get talent by id."""
+        return next((talent for talent in self.talents if talent.id == id), None)

@@ -88,6 +88,8 @@ class AttackEffect(Effect):
 
     damage: int
     element: Element
+    piercing: bool = False
+    target: SidelineTarget = SidelineTarget.ACTIVE_CHARACTER
 
 
 class HealEffect(Effect):

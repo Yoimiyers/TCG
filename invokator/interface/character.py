@@ -37,3 +37,7 @@ class Character(models.Character):
         super().__init__(**kwargs)
 
         self.current_health = self.health
+
+    def change_health(self, amount: int) -> None:
+        """Change health."""
+        self.current_health = min(self.health, max(0, self.current_health + amount))
