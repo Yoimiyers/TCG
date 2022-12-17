@@ -30,9 +30,13 @@ class Hand:
         self.cards.extend(cards)
         self._sort_cards()
 
-    def remove_cards(self, index: int) -> None:
+    def remove_card(self, id: int) -> models.Card:
         """Remove a card from the hand."""
-        self.cards.pop(index)
+        for index, card in enumerate(self.cards):
+            if card.id == id:
+                return self.cards.pop(index)
+
+        raise ValueError(f"Card with id {id} not found in hand.")
 
     def __getitem__(self, index: int) -> models.Card:
         """Get a card from the hand."""

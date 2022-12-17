@@ -15,11 +15,18 @@ StrID = str
 PlayerID = int
 
 
-__all__ = ["BaseEvent", "DiscardEvent", "Event"]
+__all__ = ["BaseEvent", "ErrorEvent", "Event", "RequestEvent"]
 
 
 class BaseEvent(typing.Generic[T], pydantic.BaseModel):
     """Base class for events."""
+
+
+class ErrorEvent(BaseEvent[None]):
+    """An error has occurred."""
+
+    message: str
+    """The error message."""
 
 
 class Event(BaseEvent[None]):
@@ -48,15 +55,21 @@ class EndPlayerRoundEvent(Event):
 class EndRoundEvent(Event):
     """The round has ended for everyone."""
 
-    side: typing.Literal[0] = 0
-    """All sides."""
-
 
 class StartRoundEvent(Event):
     """The round has started for everyone."""
 
-    side: typing.Literal[0] = 0
-    """All sides."""
+
+class EndGameEvent(Event):
+    """The game has ended."""
+
+
+class ConcededEvent(EndGameEvent):
+    """The game has ended because a player has conceded."""
+
+
+class LostEvent(EndGameEvent):
+    """The game has ended because a player has lost."""
 
 
 # ====================
@@ -262,8 +275,11 @@ class SwitchEvent(Event):
     target: IntID
     """The character that is now active."""
 
-    previous: IntID
-    """The previous character."""
+    previous: IntID | None
+    """The previous character.
+
+    If this is None, there was no previous character.
+    """
 
 
 # ====================
@@ -272,6 +288,9 @@ class SwitchEvent(Event):
 
 class HandChangeEvent(Event, abc.ABC):
     """The amount of cards in a hand has changed."""
+
+    current_amount: int
+    """The current amount of cards in the hand."""
 
     current: list[IntID] | None
     """The current cards in the hand.
@@ -285,7 +304,7 @@ class HandChangeEvent(Event, abc.ABC):
         """The change in cards."""
 
 
-class DrawEvent(HandChangeEvent):
+class CardDrawEvent(HandChangeEvent):
     """Cards have been drawn from the deck."""
 
     amount: int
@@ -302,7 +321,7 @@ class DrawEvent(HandChangeEvent):
         return self.amount
 
 
-class DiscardEvent(HandChangeEvent):
+class CardDiscardEvent(HandChangeEvent):
     """Cards have been discarded from the hand."""
 
     amount: int
@@ -317,6 +336,29 @@ class DiscardEvent(HandChangeEvent):
     @property
     def delta(self) -> int:
         return -self.amount
+
+
+class CardsChangeEvent(HandChangeEvent):
+    """Cards have been drawn from the deck."""
+
+    amount: int
+    """The amount of cards drawn."""
+
+    discarded_cards: list[IntID] | None
+    """The cards that were discarded.
+
+    If this is None, the cards cannot be revealed.
+    """
+
+    drawn_cards: list[IntID] | None
+    """The cards that were drawn.
+
+    If this is None, the cards cannot be revealed.
+    """
+
+    @property
+    def delta(self) -> int:
+        return 0
 
 
 # ====================
@@ -373,6 +415,23 @@ class DiceRemoveEvent(DiceChangeEvent):
     @property
     def delta(self) -> int:
         return -self.amount
+
+
+class DiceRerollEvent(DiceChangeEvent):
+    """Player's dice have changed."""
+
+    amount: int
+    """The amount of dice rerolled."""
+
+    rerolled_dice: list[models.Element] | None
+    """The dice that were rerolled."""
+
+    new_dice: list[models.Element] | None
+    """The dice that were rerolled to."""
+
+    @property
+    def delta(self) -> int:
+        return 0
 
 
 class RequestEvent(BaseEvent[T]):
@@ -435,3 +494,21 @@ class SupportRequestEvent(RequestEvent[StrID]):
 
     possible_enemy: list[IntID] | None
     """The enemy support cards that can be chosen."""
+
+
+# ====================
+# Change events
+
+
+class CardsChangeRequestEvent(RequestEvent[list[IntID]]):
+    """A player has been requested to choose multiple cards to change."""
+
+    possible: list[IntID]
+    """The cards that can be chosen."""
+
+
+class DiceChangeRequestEvent(RequestEvent[list[models.Element]]):
+    """A player has been requested to choose multiple dice to change."""
+
+    possible: list[models.Element]
+    """The dice that can be chosen."""

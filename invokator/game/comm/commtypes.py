@@ -7,4 +7,9 @@ __all__ = ["Callback"]
 
 T = typing.TypeVar("T")
 
-Callback = typing.Callable[[events.BaseEvent[T]], typing.Awaitable[T | None]]
+
+class Callback(typing.Protocol):
+    """A callback for events."""
+
+    async def __call__(self, event: events.BaseEvent[T]) -> T | None:
+        """Send an event."""

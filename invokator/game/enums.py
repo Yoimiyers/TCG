@@ -15,3 +15,5 @@ class Action(str, enum.Enum):
     """End the round."""
     SWITCH = "switch"
     """Switch the active character."""
+    CONCEDE = "concede"
+    """Concede the game."""

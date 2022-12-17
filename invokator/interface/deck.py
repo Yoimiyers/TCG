@@ -32,3 +32,13 @@ class Deck:
         self.cards.extend(cards)
         self.shuffle()
         return self.draw_multiple(len(cards))
+
+    @property
+    def amount(self) -> int:
+        """Return the amount of cards in the deck."""
+        return len(self.cards)
+
+    @property
+    def card_ids(self) -> list[int]:
+        """Return list of card ids."""
+        return [card.id for card in self.cards]
