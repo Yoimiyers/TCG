@@ -26,7 +26,7 @@ class Character(models.Character):
 
     current_health: int = NO_DEFAULT
     current_energy: int = 0
-    afflicted_element: models.Element | None = None
+    afflicted_elements: list[models.Element] | None = []
     infused_element: models.Element | None = None
 
     status: list[CharacterStatus] = []

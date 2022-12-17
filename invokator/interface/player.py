@@ -24,6 +24,8 @@ class Player:
 
     summons: list[Summon]
 
+    declared_end: bool
+
     def __init__(
         self,
         id: int,
@@ -40,6 +42,8 @@ class Player:
         self.dice = Dice(preferred_elements=self._usable_elements)
 
         self.summons = []
+
+        self.declared_end = False
 
     @property
     def alive_characters(self) -> list[Character]:

@@ -1,12 +1,13 @@
 """TCG game loop."""
 import asyncio
+import random
 import typing
 
 from typing_extensions import Self
 
 from invokator import interface
 
-from . import comm
+from . import comm, enums
 from .comm import events
 
 T = typing.TypeVar("T")
@@ -79,12 +80,12 @@ def for_both(
     return lambda state: _run_both(callback, state)
 
 
-def has_won(state: State) -> int | None:
+def has_all_characters_dead(state: State) -> int | None:
     """Find out who won."""
     if not state.me.alive_characters:
-        return state.opponent.id
-    if not state.opponent.alive_characters:
         return state.me.id
+    if not state.opponent.alive_characters:
+        return state.opponent.id
 
     return None
 
@@ -225,24 +226,100 @@ async def run_preparation(state: State) -> None:
     await roll_dice(state)
 
 
-async def run_round(state: State) -> None:
-    """Run a round."""
+async def run_round_start(state: State) -> None:
+    """Run the start of a round."""
     await state.send_both(events.StartRoundEvent(side=state.me.id))
 
+
+async def run_round_end(state: State) -> None:
+    """Run the end of a round."""
     await state.send_both(events.EndRoundEvent(side=state.me.id))
+
+
+async def run_attack_action(state: State) -> None:
+    """Run an attack action."""
+    talent = await state.mecomm(events.TalentRequestEvent(possible=to_ids(state.opponent.alive_characters)))
+    if talent is None:
+        return
+
+    await state.mecomm(events.ErrorEvent(message="Not implemented yet!"))
+
+
+async def run_card_action(state: State) -> None:
+    """Run a card action."""
+    await state.mecomm(events.ErrorEvent(message="Not implemented yet!"))
+
+
+async def run_tune_action(state: State) -> None:
+    """Run a tune action."""
+    await state.mecomm(events.ErrorEvent(message="Not implemented yet!"))
+
+
+async def run_switch_action(state: State) -> None:
+    """Run a switch action."""
+    await state.mecomm(events.ErrorEvent(message="Not implemented yet!"))
+
+
+async def run_turn(state: State) -> typing.Literal[enums.Action.CONCEDE] | None:
+    """Run a turn."""
+    await state.send_both(events.StartTurnEvent(side=state.me.id))
+
+    while True:
+        action = await state.mecomm(events.ActionRequestEvent())
+        match action:
+            case enums.Action.END:
+                break
+            case enums.Action.CONCEDE:
+                return enums.Action.CONCEDE
+            case enums.Action.ATTACK:
+                await run_attack_action(state)
+            case enums.Action.CARD:
+                await run_card_action(state)
+            case enums.Action.TUNE:
+                await run_tune_action(state)
+            case enums.Action.SWITCH:
+                await run_switch_action(state)
+            case _:
+                await state.mecomm(events.ErrorEvent(message="Invalid action!"))
+                continue
+
+        if has_all_characters_dead(state):
+            break
+
+    await state.send_both(events.EndTurnEvent(side=state.me.id))
+
+    return None
 
 
 async def main(state: State) -> None:
     """Run a game between two players."""
     await run_preparation(state)
 
+    # choose who starts
+    if random.random() < 0.5:
+        state = state.reversed()
+
     while True:
-        await run_round(state)
+        await run_round_start(state.reversed())
 
-        if victor := has_won(state):
-            break
+        while True:
+            if state.opponent.declared_end:
+                if state.me.declared_end:
+                    break
+            else:
+                state = state.reversed()
 
-    await state.send_both(events.EndGameEvent(side=victor))
+            result = await run_turn(state)
+            if result == enums.Action.CONCEDE:
+                await state.send_both(events.ConcededEvent(side=state.me.id))
+                return
+
+            loser = has_all_characters_dead(state)
+            if loser is not None:
+                await state.send_both(events.LostEvent(side=loser))
+                return
+
+        await run_round_end(state)
 
 
 async def start(players: Pair[interface.Player], comms: Pair[comm.Callback]) -> None:
