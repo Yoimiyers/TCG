@@ -10,6 +10,8 @@ from invokator import interface, models
 from . import comm, enums, utility
 from .comm import events
 
+__all__ = ["State", "main"]
+
 T = typing.TypeVar("T")
 
 Pair = typing.Tuple[T, T]
@@ -102,18 +104,18 @@ async def choose_cards(state: State) -> None:
     await state.mecomm(
         events.CardDrawEvent(
             side=state.me.id,
-            current_amount=state.me.deck.amount,
-            current=state.me.deck.card_ids,
-            amount=state.me.deck.amount,
+            current_amount=state.me.hand.amount,
+            current=state.me.hand.card_ids,
+            amount=state.me.hand.amount,
             cards=to_ids(cards),
         )
     )
     await state.opponentcomm(
         events.CardDrawEvent(
             side=state.me.id,
-            current_amount=state.me.deck.amount,
+            current_amount=state.me.hand.amount,
             current=None,
-            amount=state.me.deck.amount,
+            amount=state.me.hand.amount,
             cards=None,
         )
     )
@@ -127,13 +129,13 @@ async def choose_cards(state: State) -> None:
         state.me.deck.cards.append(card)
 
     state.me.deck.shuffle()
-    drawn_cards = state.me.draw_cards(5 - len(discarded_cards))
+    drawn_cards = state.me.draw_cards(len(discarded_cards))
 
     await state.mecomm(
         events.CardsChangeEvent(
             side=state.me.id,
-            current_amount=state.me.deck.amount,
-            current=state.me.deck.card_ids,
+            current_amount=state.me.hand.amount,
+            current=state.me.hand.card_ids,
             amount=len(drawn_cards),
             drawn_cards=to_ids(drawn_cards),
             discarded_cards=discarded_cards,
@@ -142,9 +144,9 @@ async def choose_cards(state: State) -> None:
     await state.opponentcomm(
         events.CardsChangeEvent(
             side=state.me.id,
-            current_amount=state.me.deck.amount,
+            current_amount=state.me.hand.amount,
             current=None,
-            amount=state.me.deck.amount,
+            amount=state.me.hand.amount,
             drawn_cards=None,
             discarded_cards=None,
         )
@@ -231,8 +233,8 @@ async def draw_cards(state: State) -> None:
     await state.mecomm(
         events.CardDrawEvent(
             side=state.me.id,
-            current_amount=state.me.deck.amount,
-            current=state.me.deck.card_ids,
+            current_amount=state.me.hand.amount,
+            current=state.me.hand.card_ids,
             amount=len(cards),
             cards=to_ids(cards),
         )
@@ -240,9 +242,9 @@ async def draw_cards(state: State) -> None:
     await state.opponentcomm(
         events.CardDrawEvent(
             side=state.me.id,
-            current_amount=state.me.deck.amount,
+            current_amount=state.me.hand.amount,
             current=None,
-            amount=state.me.deck.amount,
+            amount=state.me.hand.amount,
             cards=None,
         )
     )
@@ -291,7 +293,7 @@ async def execute_effect(
                         events.TalentEvent(
                             side=state.me.id,
                             target=state.opponent.active_character.id,
-                            current=state.opponent.active_character.health,
+                            current=state.opponent.active_character.current_health,
                             damage=effect.damage,
                             element=effect.element,
                             source=state.me.active_character.id,
@@ -389,6 +391,7 @@ async def run_turn(state: State) -> typing.Literal[enums.Action.CONCEDE] | None:
         action = await state.mecomm(events.ActionRequestEvent())
         match action:
             case enums.Action.END:
+                state.me.declared_end = True
                 break
             case enums.Action.CONCEDE:
                 return enums.Action.CONCEDE
@@ -423,6 +426,9 @@ async def main(state: State) -> None:
     round_number = 1
 
     while True:
+        state.me.declared_end = False
+        state.opponent.declared_end = False
+
         await run_round_start(state.reversed())
 
         if round_number > 1:

@@ -7,7 +7,7 @@ profile = "black"
 
 [tool.pyright]
 include = ["invokator"]
-exclude = ["**/__init__.py", "tests/**"]
+exclude = ["tests/**"]
 
 typeCheckingMode = "strict"
 reportMissingTypeStubs = "none"

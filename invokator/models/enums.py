@@ -119,8 +119,8 @@ class TalentType(str, enum.Enum):
 class EffectType(str, enum.Enum):
     """Effect type of a character's talent."""
 
-    CARD = "card"
-    """Play a card."""
+    NONE = "none"
+    """No effect."""
 
     ATTACK = "attack"
     """Attack an opponent character."""

@@ -66,19 +66,14 @@ class Effect(pydantic.BaseModel):
 
     def __new__(cls, **kwargs: typing.Any) -> Self:
         """Dynamically create a subclass of Effect based on the type field."""
+        if not kwargs:
+            return super().__new__(Effect, **kwargs)
+
         return super().__new__(_EFFECT_CLASSES.get(EffectType(kwargs["type"]), Effect))
 
     trigger: EffectTrigger | None = None
 
-    type: EffectType
-
-
-class CardEffect(Effect):
-    """TCG card effect."""
-
-    type: EffectType = EffectType.CARD
-
-    id: str
+    type: EffectType = EffectType.NONE
 
 
 class AttackEffect(Effect):

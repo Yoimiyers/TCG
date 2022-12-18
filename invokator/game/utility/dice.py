@@ -64,6 +64,11 @@ def recommend_dice(
         recommended.extend([models.Element.OMNI] * (element_amount - used_colored))
 
     # use the unrecommended dice
-    recommended.extend(dice[-omni_amount:])
+    if omni_amount:
+        unrecommended_dice = dice.copy()
+        for die in recommended:
+            unrecommended_dice.remove(die)
+
+        recommended.extend(unrecommended_dice[-omni_amount:])
 
     return recommended

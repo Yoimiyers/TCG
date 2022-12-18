@@ -41,3 +41,13 @@ class Hand:
     def __getitem__(self, index: int) -> models.Card:
         """Get a card from the hand."""
         return self.cards[index]
+
+    @property
+    def amount(self) -> int:
+        """Return the amount of cards in the hand."""
+        return len(self.cards)
+
+    @property
+    def card_ids(self) -> list[int]:
+        """Return the ids of the cards in the hand."""
+        return [card.id for card in self.cards]

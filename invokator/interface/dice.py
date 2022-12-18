@@ -38,7 +38,7 @@ class Dice:
             key=lambda x: (
                 x.value != models.Element.OMNI,
                 -(x.value in self.preferred_elements and self.preferred_elements.index(x.value)),
-                dice.count(x),
+                -dice.count(x),
                 x.value,
             )
         )
