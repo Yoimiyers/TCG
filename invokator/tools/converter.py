@@ -1,3 +1,4 @@
+"""Convert raw data to carddata format usable by TCG."""
 import typing
 
 ELEMENTS = {
@@ -63,7 +64,6 @@ SKILL_TYPES = {
 
 def convert_to_carddata(raw_data: typing.Dict[str, typing.Any]) -> typing.Dict[str, typing.Any]:
     """Convert raw card data to carddata format usable by TCG."""
-
     # characters
     characters: typing.Dict[str, typing.Any] = {}
     for card in raw_data["role_card_infos"]:
@@ -89,14 +89,14 @@ def convert_to_carddata(raw_data: typing.Dict[str, typing.Any]) -> typing.Dict[s
                     continue
                 talent_cost.append({"element": DICE_ELEMENTS[cost["cost_icon"]], "amount": int(cost["cost_num"])})
             talent["cost"] = talent_cost
-            
+
             talent["type"] = SKILL_TYPES[skill["type"][0]]
             if talent["type"] == "burst":
                 for cost in talent["cost"]:
                     if cost["element"] == "Energy":
                         c["energy"] = cost["amount"]
                         break
-            
+
             c["talents"].append(talent)
 
     return characters

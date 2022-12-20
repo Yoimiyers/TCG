@@ -11,7 +11,6 @@ __all__ = ["fetch_cards"]
 
 def fetch_cards() -> typing.Dict[str, typing.Any]:
     """Fetch card raw data in Traditional Chinese and remove HTML tags."""
-
     r = urllib.request.urlopen(BASE_URL + "zh-tw")
     card_config = r.read()
     assert len(card_config) > 0
@@ -29,5 +28,3 @@ def fetch_cards() -> typing.Dict[str, typing.Any]:
         card["content"] = pattern.sub("", card["content"])
 
     return data
-    
-    
