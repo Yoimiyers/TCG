@@ -4,14 +4,15 @@ import re
 import typing
 import urllib.request
 
-API_URL = "https://sg-hk4e-api-static.hoyoverse.com/event/e20221205drawcard/card_config?lang=zh-tw"
+BASE_URL = "https://sg-hk4e-api-static.hoyoverse.com/event/e20221205drawcard/card_config?lang="
 
 __all__ = ["fetch_cards"]
 
 
-def fetch_cards() -> dict[str, typing.Any]:
-    """Fetch cards and remove HTML tags."""
-    r = urllib.request.urlopen(API_URL)
+def fetch_cards() -> typing.Dict[str, typing.Any]:
+    """Fetch card raw data in Traditional Chinese and remove HTML tags."""
+
+    r = urllib.request.urlopen(BASE_URL + "zh-tw")
     card_config = r.read()
     assert len(card_config) > 0
 
@@ -28,3 +29,5 @@ def fetch_cards() -> dict[str, typing.Any]:
         card["content"] = pattern.sub("", card["content"])
 
     return data
+    
+    
