@@ -38,7 +38,7 @@ characters = load_card_data("characters.json", cls=invokator.interface.Character
 effects = load_card_data("status.json", cls=invokator.models.CardStatus)
 summons = load_card_data("summons.json", cls=invokator.models.Summon)
 
-player = invokator.interface.Player(characters[:3], deck=cards)
+player = invokator.interface.Player(0, characters[:3], deck=cards)
 print(player)
 
 dump_card_data(cards, "cards.json")

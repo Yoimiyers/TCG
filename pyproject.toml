@@ -1,13 +1,13 @@
 [tool.black]
 line-length = 120
-target-version = ["py39"]
+target-version = ["py310"]
 
 [tool.isort]
 profile = "black"
 
 [tool.pyright]
 include = ["invokator"]
-exclude = ["**/__init__.py", "tests/**"]
+exclude = ["tests/**"]
 
 typeCheckingMode = "strict"
 reportMissingTypeStubs = "none"

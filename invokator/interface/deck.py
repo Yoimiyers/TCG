@@ -25,10 +25,20 @@ class Deck:
 
     def draw_multiple(self, amount: int = 5) -> list[models.Card]:
         """Preview the top card of the deck."""
-        return [self.cards.pop() for _ in range(amount)]
+        return [self.cards.pop() for _ in range(min(amount, self.amount))]
 
     def reshuffle(self, cards: list[models.Card]) -> list[models.Card]:
         """Return cards back to deck and draw a new hand."""
         self.cards.extend(cards)
         self.shuffle()
         return self.draw_multiple(len(cards))
+
+    @property
+    def amount(self) -> int:
+        """Return the amount of cards in the deck."""
+        return len(self.cards)
+
+    @property
+    def card_ids(self) -> list[int]:
+        """Return list of card ids."""
+        return [card.id for card in self.cards]

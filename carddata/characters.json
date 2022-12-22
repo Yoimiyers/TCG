@@ -17,7 +17,7 @@
                         "amount": 1
                     },
                     {
-                        "element": null,
+                        "element": "omni",
                         "amount": 2
                     }
                 ],
@@ -99,7 +99,7 @@
                         "amount": 1
                     },
                     {
-                        "element": null,
+                        "element": "omni",
                         "amount": 2
                     }
                 ],
@@ -171,7 +171,7 @@
                         "amount": 1
                     },
                     {
-                        "element": null,
+                        "element": "omni",
                         "amount": 2
                     }
                 ],
@@ -248,7 +248,7 @@
                         "amount": 1
                     },
                     {
-                        "element": null,
+                        "element": "omni",
                         "amount": 2
                     }
                 ],
@@ -320,7 +320,7 @@
                         "amount": 1
                     },
                     {
-                        "element": null,
+                        "element": "omni",
                         "amount": 2
                     }
                 ],
@@ -400,7 +400,7 @@
                         "amount": 1
                     },
                     {
-                        "element": null,
+                        "element": "omni",
                         "amount": 2
                     }
                 ],

@@ -26,7 +26,7 @@ class Character(models.Character):
 
     current_health: int = NO_DEFAULT
     current_energy: int = 0
-    afflicted_element: models.Element | None = None
+    afflicted_elements: list[models.Element] | None = []
     infused_element: models.Element | None = None
 
     status: list[CharacterStatus] = []
@@ -37,3 +37,12 @@ class Character(models.Character):
         super().__init__(**kwargs)
 
         self.current_health = self.health
+
+    def change_health(self, amount: int) -> None:
+        """Change health."""
+        self.current_health = min(self.health, max(0, self.current_health + amount))
+
+    @property
+    def dead(self) -> bool:
+        """Return if character is dead."""
+        return self.current_health == 0
