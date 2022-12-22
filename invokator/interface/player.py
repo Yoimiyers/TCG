@@ -1,4 +1,6 @@
 """Player interface."""
+import typing
+
 from invokator import models
 
 from .character import Character
@@ -79,3 +81,16 @@ class Player:
         cards = self.deck.draw_multiple(amount)
         self.hand.add_cards(cards)
         return cards
+
+    def dict(self) -> dict[str, typing.Any]:
+        """Return dict representation of player."""
+        return {
+            "id": self.id,
+            "characters": [character.dict() for character in self.characters],
+            "active_character": self.active_character and self.active_character.id,
+            "deck": self.deck.amount,
+            "hand": [card.dict() for card in self.hand.cards],
+            "dice": [die.value for die in self.dice.dice],
+            "summons": [summon.dict() for summon in self.summons],
+            "declared_end": self.declared_end,
+        }

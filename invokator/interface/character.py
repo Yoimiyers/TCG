@@ -41,3 +41,8 @@ class Character(models.Character):
     def change_health(self, amount: int) -> None:
         """Change health."""
         self.current_health = min(self.health, max(0, self.current_health + amount))
+
+    @property
+    def dead(self) -> bool:
+        """Return if character is dead."""
+        return self.current_health == 0

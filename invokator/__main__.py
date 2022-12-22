@@ -1,5 +1,6 @@
 """Debug the TCG."""
 import asyncio
+import pprint
 import typing
 
 import pydantic
@@ -29,18 +30,29 @@ def create_event_callback(id: int) -> invokator.game.Callback:
             return None
 
         # ask for the response if needed
-        print(response_type, end=" : ")  # noqa: T201
-        raw_response = input().strip()
-        if response_type_origin == list:
-            raw_response = raw_response.split()
+        while True:
+            print(response_type, end=" : ")  # noqa: T201
+            raw_response = input().strip()
 
-        if not raw_response:
-            return None
+            if raw_response == "view":
+                print("====================")  # noqa: T201
+                pprint.pprint(state.players[0].dict(), indent=2)  # noqa: T203
+                print("--------------------")  # noqa: T201
+                pprint.pprint(state.players[1].dict(), indent=2)  # noqa: T203
+                print("====================")  # noqa: T201
+                continue
 
-        try:
-            return pydantic.parse_obj_as(response_type, raw_response)
-        except Exception:
-            return None
+            if response_type_origin == list:
+                raw_response = raw_response.split()
+
+            if not raw_response:
+                return None
+
+            try:
+                return pydantic.parse_obj_as(response_type, raw_response)
+            except Exception as e:
+                print(e)  # noqa: T201
+                continue
 
     return event_callback
 

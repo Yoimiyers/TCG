@@ -41,7 +41,7 @@ class State:
         self.players = players
         self.comms = comms
 
-    def reversed(self) -> Self:
+    def of_opponent(self) -> Self:
         """Return a reversed state."""
         return State(self.players[::-1], self.comms[::-1])
 
@@ -76,14 +76,7 @@ class State:
 
 async def _run_both(callback: typing.Callable[[State], typing.Awaitable[T]], state: State) -> Pair[T]:
     """Run a callback for both players."""
-    return await asyncio.gather(callback(state), callback(state.reversed()))
-
-
-def for_both(
-    callback: typing.Callable[[State], typing.Awaitable[T]]
-) -> typing.Callable[[State], typing.Awaitable[Pair[T]]]:
-    """Return a callback that runs for both players."""
-    return lambda state: _run_both(callback, state)
+    return await asyncio.gather(callback(state), callback(state.of_opponent()))
 
 
 def has_all_characters_dead(state: State) -> int | None:
@@ -96,7 +89,6 @@ def has_all_characters_dead(state: State) -> int | None:
     return None
 
 
-@for_both
 async def choose_cards(state: State) -> None:
     """Choose cards for both players."""
     cards = state.me.draw_cards(5)
@@ -153,25 +145,23 @@ async def choose_cards(state: State) -> None:
     )
 
 
-@for_both
 async def choose_active_character(state: State) -> None:
     """Choose an active character for both players."""
     character = await state.mecomm(
         events.CharacterRequestEvent(
-            possible=to_ids(state.me.characters),
+            possible=to_ids(state.me.alive_characters),
             possible_enemy=None,
         )
     )
     if character is None:
         await state.send_error("No character chosen!")
-        character = state.me.characters[0].id
+        character = state.me.alive_characters[0].id
 
     state.me.switch_character(character)
 
     await state.send_both(events.SwitchEvent(side=state.me.id, target=character, previous=None))
 
 
-@for_both
 async def roll_dice(state: State) -> None:
     """Roll the dice for both players."""
     dice = state.me.dice.roll(8)
@@ -225,7 +215,6 @@ async def roll_dice(state: State) -> None:
     )
 
 
-@for_both
 async def draw_cards(state: State) -> None:
     """Draw 2 cards."""
     cards = state.me.draw_cards(2)
@@ -252,9 +241,8 @@ async def draw_cards(state: State) -> None:
 
 async def run_preparation(state: State) -> None:
     """Prepare the game."""
-    await choose_cards(state)
-    await choose_active_character(state)
-    await roll_dice(state)
+    await _run_both(choose_cards, state)
+    await _run_both(choose_active_character, state)
 
 
 async def run_round_start(state: State) -> None:
@@ -315,7 +303,7 @@ async def execute_effect(
             await state.send_error(f"Unknown effect: {effect!r}")
 
 
-async def run_attack_action(state: State) -> None:
+async def run_attack_action(state: State) -> typing.Literal[enums.Action.ATTACK] | None:
     """Run an attack action."""
     assert state.me.active_character is not None
 
@@ -367,6 +355,8 @@ async def run_attack_action(state: State) -> None:
     for effect in talent.effects:
         await execute_effect(state, effect, source=talent)
 
+    return enums.Action.ATTACK
+
 
 async def run_card_action(state: State) -> None:
     """Run a card action."""
@@ -385,6 +375,7 @@ async def run_switch_action(state: State) -> None:
 
 async def run_turn(state: State) -> typing.Literal[enums.Action.CONCEDE] | None:
     """Run a turn."""
+    assert state.me.active_character
     await state.send_both(events.StartTurnEvent(side=state.me.id))
 
     while True:
@@ -396,7 +387,9 @@ async def run_turn(state: State) -> typing.Literal[enums.Action.CONCEDE] | None:
             case enums.Action.CONCEDE:
                 return enums.Action.CONCEDE
             case enums.Action.ATTACK:
-                await run_attack_action(state)
+                r = await run_attack_action(state)
+                if r == enums.Action.ATTACK:
+                    break
             case enums.Action.CARD:
                 await run_card_action(state)
             case enums.Action.TUNE:
@@ -421,7 +414,7 @@ async def main(state: State) -> None:
 
     # choose who starts
     if random.random() < 0.5:
-        state = state.reversed()
+        state = state.of_opponent()
 
     round_number = 1
 
@@ -429,22 +422,28 @@ async def main(state: State) -> None:
         state.me.declared_end = False
         state.opponent.declared_end = False
 
-        await run_round_start(state.reversed())
+        await run_round_start(state.of_opponent())
 
         if round_number > 1:
-            await draw_cards(state)
+            await _run_both(draw_cards, state)
+
+        await _run_both(roll_dice, state)
 
         while True:
             if state.opponent.declared_end:
                 if state.me.declared_end:
                     break
             else:
-                state = state.reversed()
+                state = state.of_opponent()
 
             result = await run_turn(state)
             if result == enums.Action.CONCEDE:
                 await state.send_both(events.ConcededEvent(side=state.me.id))
                 return
+
+            assert state.opponent.active_character
+            if state.opponent.active_character.dead:
+                await choose_active_character(state.of_opponent())
 
             loser = has_all_characters_dead(state)
             if loser is not None:

@@ -25,7 +25,7 @@ class Deck:
 
     def draw_multiple(self, amount: int = 5) -> list[models.Card]:
         """Preview the top card of the deck."""
-        return [self.cards.pop() for _ in range(amount)]
+        return [self.cards.pop() for _ in range(min(amount, self.amount))]
 
     def reshuffle(self, cards: list[models.Card]) -> list[models.Card]:
         """Return cards back to deck and draw a new hand."""
