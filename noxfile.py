@@ -9,10 +9,10 @@ import typing
 
 import nox
 
-nox.options.sessions = ["reformat", "lint", "type-check", "test"]
+nox.options.sessions = ["reformat", "lint", "type-check", "verify-types", "test"]
 
 PACKAGE = "invokator"
-GENERAL_TARGETS = ["./noxfile.py", "./invokator", "./tests"]
+GENERAL_TARGETS = ["./invokator", "./tests", "./noxfile.py", "./setup.py"]
 PRETTIER_TARGETS = ["*.md", "carddata/**/*.json", ".github/**/*.yml"]
 PYRIGHT_ENV = {"PYRIGHT_PYTHON_FORCE_VERSION": "latest"}
 

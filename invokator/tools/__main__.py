@@ -5,7 +5,9 @@ import os
 from .converter import convert_to_carddata
 from .raw import fetch_cards
 
-if __name__ == "__main__":
+
+def main() -> None:
+    """Fetch cards and convert to carddata."""
     print("Fetching cards...")  # noqa: T201
     cards = fetch_cards()
 
@@ -21,3 +23,7 @@ if __name__ == "__main__":
         json.dump(carddata, f, indent=4, ensure_ascii=False, sort_keys=True)
 
     print("Done.")  # noqa: T201
+
+
+if __name__ == "__main__":
+    main()
