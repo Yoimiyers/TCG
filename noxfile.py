@@ -3,15 +3,16 @@ from __future__ import annotations
 
 import functools
 import logging
+import os
 import pathlib
 import typing
 
 import nox
 
-nox.options.sessions = ["reformat", "lint", "type-check", "test", "prettier"]
+nox.options.sessions = ["reformat", "lint", "type-check", "test"]
 
 PACKAGE = "invokator"
-GENERAL_TARGETS = ["./noxfile.py", "playground.py", "./invokator"]
+GENERAL_TARGETS = ["./noxfile.py", "./invokator", "./tests"]
 PRETTIER_TARGETS = ["*.md", "carddata/**/*.json", ".github/**/*.yml"]
 PYRIGHT_ENV = {"PYRIGHT_PYTHON_FORCE_VERSION": "latest"}
 
@@ -51,12 +52,7 @@ def requires(*requirements: str) -> typing.Callable[[NoxCallback], NoxCallback]:
 
 
 @nox.session()
-@requires(
-    "flake8",
-    "flake8-annotations-complexity",
-    "flake8-docstrings",
-    "flake8-print",
-)
+@requires("flake8", "flake8-annotations-complexity", "flake8-docstrings", "flake8-print")
 def lint(session: nox.Session) -> None:
     """Run this project's modules against the pre-defined flake8 linters."""
     session.run("flake8", "--version")
@@ -76,33 +72,27 @@ def reformat(session: nox.Session) -> None:
     LOGGER.disabled = False
 
 
-# @requires("pytest", "pytest-asyncio", "pytest-cov")
-# @nox.session(name="test")
-# def test(session: nox.Session) -> None:
-#     """Run this project's tests using pytest."""
-#     session.run(
-#         "pytest",
-#         "--asyncio-mode=auto",
-#         "-r",
-#         "sfE",
-#         *verbose_args(),
-#         "--cov",
-#         PACKAGE,
-#         "--cov-report",
-#         "term",
-#         "--cov-report",
-#         "html:coverage_html",
-#         "--cov-report",
-#         "xml",
-#         *session.posargs,
-#     )
-
-
 @nox.session()
-@requires()
+@requires("pytest", "pytest-asyncio", "pytest-cov")
 def test(session: nox.Session) -> None:
-    """Run some really bad "tests"."""
-    session.run("python", "playground.py")
+    """Run this project's tests using pytest."""
+    os.makedirs(".coverage", exist_ok=True)
+    session.run(
+        "pytest",
+        "--asyncio-mode=auto",
+        "-r",
+        "sfE",
+        *verbose_args(),
+        "--cov",
+        PACKAGE,
+        "--cov-report",
+        "term",
+        "--cov-report",
+        "html",
+        "--cov-report",
+        "xml",
+        *session.posargs,
+    )
 
 
 @nox.session(name="type-check")
