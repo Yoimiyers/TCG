@@ -6,6 +6,7 @@ import logging
 import os
 import pathlib
 import typing
+import shutil
 
 import nox
 
@@ -109,6 +110,9 @@ def verify_types(session: nox.Session) -> None:
     install_requirements(session, ".", "--force-reinstall", "--no-deps")
 
     session.run("pyright", "--verifytypes", PACKAGE, "--ignoreexternal", *verbose_args(), env=PYRIGHT_ENV)
+
+    for directory in ("invokator.egg-info", "dist", "build"):
+        shutil.rmtree(directory, ignore_errors=True)
 
 
 @nox.session(python=False)
