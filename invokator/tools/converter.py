@@ -1,7 +1,7 @@
 """Convert raw data to carddata format usable by TCG."""
 import typing
 
-ELEMENTS = {
+ELEMENTS: dict[str, str] = {
     "物理": "physical",
     "火": "Pyro",
     "水": "Hydro",
@@ -13,7 +13,7 @@ ELEMENTS = {
     "萬能": "omni",
 }
 
-ET_ELEMENTS = {
+ET_ELEMENTS: dict[str, str] = {
     "ETIce": "Cryo",
     "ETFire": "Pyro",
     "ETWater": "Hydro",
@@ -23,7 +23,7 @@ ET_ELEMENTS = {
     "ETGrass": "Dendro",
 }
 
-DICE_ELEMENTS = {
+DICE_ELEMENTS: dict[str, str | None] = {
     "1": "Energy",
     "3": "Omni",
     "10": None,
@@ -36,7 +36,7 @@ DICE_ELEMENTS = {
     "17": "Anemo",
 }
 
-WEAPON_TYPES = {
+WEAPON_TYPES: dict[str, str] = {
     "單手劍": "Sword",
     "雙手劍": "Claymore",
     "弓": "Bow",
@@ -45,7 +45,7 @@ WEAPON_TYPES = {
     "其他武器": "Other",
 }
 
-LOCATIONS = {
+LOCATIONS: dict[str, str] = {
     "蒙德": "Mondstadt",
     "璃月": "Liyue",
     "稻妻": "Inazuma",
@@ -54,7 +54,7 @@ LOCATIONS = {
     "魔物": "Monster",
 }
 
-SKILL_TYPES = {
+SKILL_TYPES: dict[str, str] = {
     "普通攻擊": "normal",
     "元素爆發": "burst",
     "元素戰技": "skill",

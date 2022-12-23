@@ -68,9 +68,10 @@ def create_default_player(id: int) -> invokator.interface.Player:
     return invokator.interface.Player(id=id, characters=characters, deck=cards)
 
 
+state: invokator.game.State = invokator.game.State(
+    (create_default_player(111), create_default_player(222)),
+    (create_event_callback(111), create_event_callback(222)),
+)
+
 if __name__ == "__main__":
-    state = invokator.game.State(
-        (create_default_player(111), create_default_player(222)),
-        (create_event_callback(111), create_event_callback(222)),
-    )
     asyncio.run(invokator.game.main(state))

@@ -14,3 +14,22 @@ reportMissingTypeStubs = "none"
 reportImportCycles = "none"
 reportUnusedFunction = "none"
 reportPrivateUsage = "none"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["invokator"]
+omit = ["**/__init__.py", "**/__main__.py"]
+data_file = ".coverage/.coverage"
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+sort = "cover"
+
+[tool.coverage.html]
+directory = ".coverage/htmlcov"
+
+[tool.coverage.xml]
+output = ".coverage/coverage.xml"

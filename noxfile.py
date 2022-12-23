@@ -3,16 +3,18 @@ from __future__ import annotations
 
 import functools
 import logging
+import os
 import pathlib
+import shutil
 import typing
 
 import nox
 
-nox.options.sessions = ["reformat", "lint", "type-check", "test", "prettier"]
+nox.options.sessions = ["reformat", "lint", "type-check", "verify-types", "test"]
 
 PACKAGE = "invokator"
-GENERAL_TARGETS = ["./noxfile.py", "playground.py", "./invokator"]
-PRETTIER_TARGETS = ["*.md", "carddata/**/*.json", ".github/**/*.yml"]
+GENERAL_TARGETS = ["./invokator", "./tests", "./noxfile.py", "./setup.py"]
+PRETTIER_TARGETS = ["*.md", "carddata/**/*.json", "*.yml", ".github/**/*.yml"]
 PYRIGHT_ENV = {"PYRIGHT_PYTHON_FORCE_VERSION": "latest"}
 
 LOGGER = logging.getLogger("nox")
@@ -51,12 +53,7 @@ def requires(*requirements: str) -> typing.Callable[[NoxCallback], NoxCallback]:
 
 
 @nox.session()
-@requires(
-    "flake8",
-    "flake8-annotations-complexity",
-    "flake8-docstrings",
-    "flake8-print",
-)
+@requires("flake8", "flake8-annotations-complexity", "flake8-docstrings", "flake8-print")
 def lint(session: nox.Session) -> None:
     """Run this project's modules against the pre-defined flake8 linters."""
     session.run("flake8", "--version")
@@ -76,33 +73,27 @@ def reformat(session: nox.Session) -> None:
     LOGGER.disabled = False
 
 
-# @requires("pytest", "pytest-asyncio", "pytest-cov")
-# @nox.session(name="test")
-# def test(session: nox.Session) -> None:
-#     """Run this project's tests using pytest."""
-#     session.run(
-#         "pytest",
-#         "--asyncio-mode=auto",
-#         "-r",
-#         "sfE",
-#         *verbose_args(),
-#         "--cov",
-#         PACKAGE,
-#         "--cov-report",
-#         "term",
-#         "--cov-report",
-#         "html:coverage_html",
-#         "--cov-report",
-#         "xml",
-#         *session.posargs,
-#     )
-
-
 @nox.session()
-@requires()
+@requires("pytest", "pytest-asyncio", "pytest-cov")
 def test(session: nox.Session) -> None:
-    """Run some really bad "tests"."""
-    session.run("python", "playground.py")
+    """Run this project's tests using pytest."""
+    os.makedirs(".coverage", exist_ok=True)
+    session.run(
+        "pytest",
+        "--asyncio-mode=auto",
+        "-r",
+        "sfE",
+        *verbose_args(),
+        "--cov",
+        PACKAGE,
+        "--cov-report",
+        "term",
+        "--cov-report",
+        "html",
+        "--cov-report",
+        "xml",
+        *session.posargs,
+    )
 
 
 @nox.session(name="type-check")
@@ -119,6 +110,9 @@ def verify_types(session: nox.Session) -> None:
     install_requirements(session, ".", "--force-reinstall", "--no-deps")
 
     session.run("pyright", "--verifytypes", PACKAGE, "--ignoreexternal", *verbose_args(), env=PYRIGHT_ENV)
+
+    for directory in ("invokator.egg-info", "dist", "build"):
+        shutil.rmtree(directory, ignore_errors=True)
 
 
 @nox.session(python=False)
