@@ -5,8 +5,8 @@ import functools
 import logging
 import os
 import pathlib
-import typing
 import shutil
+import typing
 
 import nox
 
