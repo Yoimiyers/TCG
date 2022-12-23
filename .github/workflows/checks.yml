@@ -87,6 +87,7 @@ jobs:
               with:
                   token: ${{ secrets.CODECOV_TOKEN }}
                   files: .coverage/coverage.xml
+                  comment: false
 
     prettier:
         name: Run prettier

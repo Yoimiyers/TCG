@@ -14,7 +14,7 @@ nox.options.sessions = ["reformat", "lint", "type-check", "verify-types", "test"
 
 PACKAGE = "invokator"
 GENERAL_TARGETS = ["./invokator", "./tests", "./noxfile.py", "./setup.py"]
-PRETTIER_TARGETS = ["*.md", "carddata/**/*.json", ".github/**/*.yml"]
+PRETTIER_TARGETS = ["*.md", "carddata/**/*.json", "*.yml", ".github/**/*.yml"]
 PYRIGHT_ENV = {"PYRIGHT_PYTHON_FORCE_VERSION": "latest"}
 
 LOGGER = logging.getLogger("nox")
